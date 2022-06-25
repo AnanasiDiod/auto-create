@@ -42,4 +42,4 @@ def main(width, heigh, quantity, EI150 = False, path = str()):
     p.go_arc(1, 4.5)
     p.go_arc(8, 4.5)
 
-    doc.saveas(path+"уголок "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity * 8 + int(EI150) * 8)+'шт.dxf')
+    doc.saveas(path+"уголок "+str(width)+'x'+str(heigh)+' 1мм '+ str(quantity * 8 + int(EI150) * 8)+'шт.dxf')

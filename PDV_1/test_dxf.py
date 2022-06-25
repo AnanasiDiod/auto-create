@@ -1,6 +1,7 @@
 from turtle import width
 import ezdxf as dxf
 from point import *
+import os
 
 heigh, width, quantity = 300, 300, 1
 doc = dxf.new()
@@ -10,15 +11,21 @@ msp = doc.modelspace()
 p = point()
 p.msp = msp
 
-p.go_line(72, 0)
-p.go_arc(8, 3)
-p.go_arc(7, 3)
-p.go_line(0, -19)
-p.go_arc(6, 3)
-p.go_arc(5, 3)
-p.go_line(-47, 0)
-p.set_xy(20, -30)
-p.go_arc(2, 5)
-p.go_arc(1, 5)
-doc.saveas(path+"полоска "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity*2)+'шт.dxf')
+p.go_line(222 + (heigh - 300), 0)
+p.go_arc(7, 2)
+p.go_arc(8, 2)
+p.go_line(0, -32.5)
+p.go_arc(5, 2)
+p.go_arc(6, 2)
+p.go_line(-(222 + (heigh - 300)), 0)
+p.go_arc(3, 2)
+p.go_arc(4, 2)
+p.go_line(0, 32.5)
+p.go_arc(1, 2)
+p.go_arc(2, 2)
+p.go_init()
 
+p.circle(26, -8.102, 4.9/2)
+p.circle(85 + (heigh - 300)/2, 0, 4.9/2)
+p.circle(85 + (heigh - 300)/2, 0, 4.9/2)
+doc.saveas(path+"полоска вертикальная "+str(width)+'x'+str(heigh)+' 1мм '+ str(quantity)+'шт.dxf')
