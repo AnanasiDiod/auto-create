@@ -1,10 +1,13 @@
-import damper, stripe_vert, stripe_hor
+import damper
+import stripe_vert
+import stripe_hor
 import os
 
 
 width, heigh, quantity = 700, 400, 2
-path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-2(Стеновой) " + str(width) + "x" + str(heigh) + '/'
-ei150 = False
+# path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан дымовой ПДВ-2(Стеновой) " + str(width) + "x" + str(heigh) + '/'
+path = "D:/Рабочий стол/git projects/test/Клапан дымовой ПДВ-2(Стеновой) " + str(
+    width) + "x" + str(heigh) + '/'
 
 try:
     try:
