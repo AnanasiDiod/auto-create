@@ -1,8 +1,8 @@
 import cup, plinth, sidewall, partition_wall, partition_sidewall, partition_sidewall_h
-import profile_1
+import profile_1, profile_2, supports, support_of_axis, edge
 import os
 
-width, heigh, quantity = 400, 400, 1
+width, heigh, quantity = 500, 600, 1
 # path = input().replace('\\', "/")
 path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) +" - " + str(quantity) + ' шт'+ '/'
 # path = "D:/Рабочий стол/git projects/test/Клапан дымовой ПДВ-2(Стеновой) " + str(width) + "x" + str(heigh) + '/'
@@ -37,7 +37,12 @@ try:
         partition_sidewall.main(width, heigh, quantity, nh, path + "0,8мм/")
         partition_sidewall_h.main(width, heigh, quantity, nw, path + "0,8мм/")
         profile_1.main(width, heigh, quantity, path + "0,8мм/")
+        profile_2.main(width, heigh, quantity, path + "0,8мм/")
+        supports.main(width, heigh, quantity, path + "0,8мм/")
+        support_of_axis.main(width, heigh, quantity, path + "0,8мм/")
+        if (width >= 400 or heigh >= 400) and heigh >= 200:
+            edge.main(width, heigh, quantity, path + "0,8мм/")
 except:
-    print("Ошибка сохранения файла")
+    print("Ошибка сохранения файла!")
 else:
-    print("Необходимые папки и файлы в них созданы успешно")
+    print("Работа завершена!")

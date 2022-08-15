@@ -1,7 +1,7 @@
 import ezdxf as dxf
 from point import *
 
-def main(width, heigh, quantity, nh, nw, path = str()):
+def wall(width, heigh, quantity, nh, nw, path = str(), side = False):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2) 
     msp = doc.modelspace()
@@ -39,8 +39,25 @@ def main(width, heigh, quantity, nh, nw, path = str()):
     p.set_xy(175 + (heigh - 400) / 2, -41.1)
     p.circle(0, 0, 4.9/2)
     p.circle(34, 0, 4.9/2)
-    
-    doc.saveas(path+"Половина лопатки "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity * 2)+'шт.dxf')
-    
 
-# main(500, 500, 1, 4, 4, "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) 500x500 - 1 шт/резка/0,8мм")
+    if width < 400 and heigh < 400 or heigh < 200:
+        doc.saveas(path+"Половина лопатки "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity * 2)+'шт.dxf')
+    else:
+        if side:
+            p.set_xy(192 + (heigh - 400)/2, -(170.8 + (width - 400)/2))
+            p.circle(0, 0, 4.9/2)
+            p.circle(0, -(137.8 + (width - 400)/2), 4.9/2)
+            doc.saveas(path+"Половина лопатки передняя "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+        else:
+            p.set_xy(128 + (heigh - 400)/2, -33)
+            p.circle(0, 0, 4.9/2)
+            p.circle(128, 0, 4.9/2)
+            p.circle(-128, -(137.8 + (width - 400)/2), 4.9/2)
+            p.circle(128, 0, 4.9/2)
+            p.circle(-128, -(137.8 + (width - 400)/2), 4.9/2)
+            p.circle(128, 0, 4.9/2)
+            doc.saveas(path+"Половина лопатки задняя "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+
+def main(width, heigh, quantity, nh, nw, path = str()):
+    wall(width, heigh, quantity, nh, nw, path, False)
+    wall(width, heigh, quantity, nh, nw, path, True)

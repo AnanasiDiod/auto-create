@@ -56,4 +56,11 @@ def main(width, heigh, quantity, path = str()):
 
     doc.saveas(path+"Профиль 1 "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
 
-    # сделать версию под привод
+    p.set_xy(31, -(182.64 + (heigh - 400) / 2))
+    p.circle(0, 0, 4.9/2)
+    p.circle(240.4, 0, 4.9/2)
+    p.circle(0, -90, 4.9/2)
+    p.circle(-240.4, 0, 4.9/2)
+    p.circle(45, 50.2, 9)
+
+    doc.saveas(path+"Профиль 1 под привод "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
