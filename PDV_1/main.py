@@ -4,8 +4,9 @@ import side_support, ud_support, fixture
 import os
 
 
-width, heigh, quantity = 700, 400, 2
-path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) + '/'
+width, heigh, quantity = 500, 500, 1
+path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) +" - " + str(quantity) + ' шт'+ '/'
+#path = "D:/Рабочий стол/git projects/test/Клапан дымовой ПДВ-2(Стеновой) " + str(width) + "x" + str(heigh) + '/'
 ei150 = False
 
 try:
