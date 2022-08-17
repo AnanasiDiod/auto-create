@@ -1,9 +1,10 @@
 import ezdxf as dxf
 from point import *
 
-def profile(width, heigh, quantity, path = str(), ver = False):
+
+def profile(width, heigh, quantity, path=str(), ver=False):
     doc = dxf.new()
-    doc.layers.add("FIGURE", color=2) 
+    doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
     p = point()
     p.msp = msp
@@ -64,7 +65,7 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.go_arc(2, 2.5)
     p.go_arc(1, 2.5)
 
-    #отверстия в уголках
+    # отверстия в уголках
 
     p.set_xy(17.6, 15.5)
     p.circle(0, 0, 4.9/2)
@@ -78,9 +79,9 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.circle(26.2, 0, 4.9/2)
     p.circle(0, 430 + (width - 400), 4.9/2)
 
-    #проушины под крепление к воздуховоду и решёткам
+    # проушины под крепление к воздуховоду и решёткам
 
-    #верхний левый угол
+    # верхний левый угол
     p.set_xy(-11.25, 8.78)
     p.go_angle(135, 10)
     p.go_arc(3, 4.5)
@@ -93,7 +94,7 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.go_arc(5, 4.5)
     p.go_arc(4, 4.5)
 
-    #верхний правый угол
+    # верхний правый угол
     p.set_xy(326.16, 15.15)
     p.go_angle(45, 10)
     p.go_arc(1, 4.5)
@@ -106,7 +107,7 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.go_arc(3, 4.5)
     p.go_arc(2, 4.5)
 
-    #нижний левый угол
+    # нижний левый угол
     p.set_xy(-18.32, -(414.85 + (width - 400)))
     p.go_angle(45, 10)
     p.go_arc(1, 4.5)
@@ -119,7 +120,7 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.go_arc(3, 4.5)
     p.go_arc(2, 4.5)
 
-    #нижний правый угол
+    # нижний правый угол
     p.set_xy(333.23, -(421.22 + (width - 400)))
     p.go_angle(135, 10)
     p.go_arc(3, 4.5)
@@ -132,7 +133,7 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.go_arc(5, 4.5)
     p.go_arc(4, 4.5)
 
-    #крепление к профилю 1
+    # крепление к профилю 1
     p.set_xy(39.44, -15.6)
     p.circle(0, 0, 4.9/2)
     p.circle(242.4, 0, 4.9/2)
@@ -140,9 +141,9 @@ def profile(width, heigh, quantity, path = str(), ver = False):
     p.circle(-242.4, 0, 4.9/2)
 
     if ver:
-        p.set_xy(54.94, -48.5)
+        p.set_xy(52.14, -48.5)
     else:
-        p.set_xy(117.34, -48.5)
+        p.set_xy(109.54, -48.5)
     p.circle(0, 0, 4.9/2)
     p.circle(0, -(151 + (width - 400)/2), 4.9/2)
     p.circle(0, -(151 + (width - 400)/2), 4.9/2)
@@ -173,10 +174,13 @@ def profile(width, heigh, quantity, path = str(), ver = False):
         p.go_arc(3, 2.54/2)
         p.go_arc(2, 2.54/2)
         p.go_arc(1, 2.54/2)
-        doc.saveas(path+"Профиль 2 верх "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+        doc.saveas(path+"Профиль 2 верх "+str(width)+'x' +
+                   str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
     else:
-        doc.saveas(path+"Профиль 2 низ "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+        doc.saveas(path+"Профиль 2 низ "+str(width)+'x' +
+                   str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
 
-def main(width, heigh, quantity, path = str()):
+
+def main(width, heigh, quantity, path=str()):
     profile(width, heigh, quantity, path, False)
     profile(width, heigh, quantity, path, True)
