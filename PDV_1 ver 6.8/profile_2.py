@@ -82,7 +82,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     # проушины под крепление к воздуховоду и решёткам
 
     # верхний левый угол
-    p.set_xy(-11.25, 8.78)
+    p.set_xy(-10.84, 8.78)
     p.go_angle(135, 10)
     p.go_arc(3, 4.5)
     p.go_arc(2, 4.5)
@@ -95,7 +95,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.go_arc(4, 4.5)
 
     # верхний правый угол
-    p.set_xy(326.16, 15.15)
+    p.set_xy(325.76, 15.15)
     p.go_angle(45, 10)
     p.go_arc(1, 4.5)
     p.go_arc(8, 4.5)
@@ -108,7 +108,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.go_arc(2, 4.5)
 
     # нижний левый угол
-    p.set_xy(-18.32, -(414.85 + (width - 400)))
+    p.set_xy(-17.92, -(414.85 + (width - 400)))
     p.go_angle(45, 10)
     p.go_arc(1, 4.5)
     p.go_arc(8, 4.5)
@@ -121,7 +121,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.go_arc(2, 4.5)
 
     # нижний правый угол
-    p.set_xy(333.23, -(421.22 + (width - 400)))
+    p.set_xy(332.83, -(421.22 + (width - 400)))
     p.go_angle(135, 10)
     p.go_arc(3, 4.5)
     p.go_arc(2, 4.5)

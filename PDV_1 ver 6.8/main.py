@@ -10,6 +10,7 @@ import supports
 import support_of_axis
 import edge
 import os
+import ring
 
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
@@ -22,8 +23,8 @@ def main():
     width = int(input('Ширина клапана в мм: '))
     heigh = int(input('Высота клапана в мм: '))
     quantity = int(input('Количество в резке(шт): '))
-    path = g_path + "/Клапан противопожарный ПДВ-1(Пр) " + str(
-        width) + "x" + str(heigh) + " - " + str(quantity) + ' шт/'
+    path = g_path + "/Противопожарный клапан ПДВ-1 (Пр) " + str(
+        width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
     # width, heigh, quantity = 400, 400, 1
     # path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) +" - " + str(quantity) + ' шт'+ '/'
     
@@ -47,10 +48,14 @@ def main():
             os.mkdir(path + "0,8мм/")
         except:
             print('Не удалось создать папку "0,8мм"')
+        try:
+            os.mkdir(path + "2мм/")
+        except:
+            print('Не удалось создать папку "2мм"')
         else:
             print('Все папки созданы успешно')
-            nh = (((384 + (heigh - 400) - 23 * 2) // 140) // 2 + 1) * 2
-            nw = ((int(341.6) + 1 + (width - 400) - 20 * 2) // 140) + 2
+            nh = (((384 + (heigh - 400) - 23 * 2) // 120) // 2 + 1) * 2
+            nw = ((int(341.6) + 1 + (width - 400) - 20 * 2) // 120) + 2
             cup.main(width, heigh, quantity, path + "0,8мм/")
             sidewall.main(width, heigh, quantity, path + "0,8мм/")
             partition_wall.main(width, heigh, quantity,
@@ -64,6 +69,7 @@ def main():
             profile_2.main(width, heigh, quantity, path + "0,8мм/")
             supports.main(width, heigh, quantity, path + "0,8мм/")
             support_of_axis.main(width, heigh, quantity, path + "0,8мм/")
+            ring.main(width, heigh, quantity, path + "2мм/")
             if (width >= 400 or heigh >= 400) and heigh >= 200:
                 edge.main(width, heigh, quantity, path + "0,8мм/")
     except:
