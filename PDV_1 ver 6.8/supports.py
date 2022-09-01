@@ -19,7 +19,7 @@ def main(width, heigh, quantity, path=str()):
     p.go_line(0, 8.595)
     p.go_init()
 
-    p.circle(30, -24.54, 4.9/2)
+    p.circle(30, -19.54, 4.9/2)
     p.circle(151 + (width - 400)/2, 0, 4.9/2)
     p.circle(151 + (width - 400)/2, 0, 4.9/2)
 

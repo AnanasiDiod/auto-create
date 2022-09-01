@@ -27,7 +27,7 @@ def wall(width, heigh, quantity, nh, nw, path = str(), side = False):
     for i in range(nh):
         p.circle(0, 0, 4.9 / 2)
         p.circle(0,-(333.4 + (width - 400)), 4.9/2)
-        p.set_xy(23 + (i + 1) * dh, -6.1)
+        p.set_xy(21 + (i + 1) * dh, -6.1)
 
     p.set_xy(9.9, -20)
     dw = (345.6 - 20 * 2 + (width - 400)) / (nw - 1)
