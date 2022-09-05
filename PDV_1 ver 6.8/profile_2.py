@@ -149,7 +149,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.circle(0, -(151 + (width - 400)/2), 4.9/2)
     # метка
     if ver:
-        p.set_xy(-34.94, -(203 + (width - 400)/2))
+        p.set_xy(-30.94, -(203 + (width - 400)/2))
         p.go_arc(4, 1.5)
         p.go_arc(3, 1.5)
         p.go_arc(2, 1.5)
@@ -161,9 +161,9 @@ def profile(width, heigh, quantity, path=str(), ver=False):
         p.go_line(1.5, 0)
         p.go_line(0, -7)
         p.go_line(-0.75, 0)
-        p.go_line(0, 6.25)
+        p.go_line(0, 6.21)
         p.go_line(-0.75, 0)
-        p.set_xy(-34.94, -(203 + (width - 400)/2))
+        p.set_xy(-30.94, -(203 + (width - 400)/2))
         p.go_line(0, 0.75)
         p.go_arc(4, 1.5/2)
         p.go_arc(3, 1.5/2)

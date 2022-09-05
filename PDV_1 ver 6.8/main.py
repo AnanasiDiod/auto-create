@@ -15,6 +15,8 @@ import ring
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
 g_path = ''
+
+
 def main():
     global g_path
     t_path = input(message_1).replace('\\', "/")
@@ -27,7 +29,6 @@ def main():
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
     # width, heigh, quantity = 400, 400, 1
     # path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) +" - " + str(quantity) + ' шт'+ '/'
-    
 
     ei150 = False
 
