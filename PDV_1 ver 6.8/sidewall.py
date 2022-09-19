@@ -1,7 +1,7 @@
 import ezdxf as dxf
 from point import *
 
-def main(width, heigh, quantity, path = str()):
+def variants(width, heigh, quantity, path = str(), drive = False):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2) 
     msp = doc.modelspace()
@@ -18,10 +18,15 @@ def main(width, heigh, quantity, path = str()):
     p.circle(87.96, 0, 4.9/2)
     p.circle(0, -(360 + heigh - 400), 4.9/2)
     p.circle(-87.96, 0, 4.9/2)
-    p.circle(43.98, 180 + (heigh - 400)/2, 5.5)
+    if drive:
+        p.set_xy(51.48, -(198 + (heigh - 400)/2))
+        p.circle(0, 0, 5.5)
+        doc.saveas(path+"Боковина "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+    else:
+        p.set_xy(51.48, -(198 + (heigh - 400)/2))
+        p.circle(0, 0, 9)
+        doc.saveas(path+"Боковина под привод "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
 
-    doc.saveas(path+"Боковина "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
-
-    p.circle(0, 0, 9)
-
-    doc.saveas(path+"Боковина под привод "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+def main(width, heigh, quantity, path = str()):
+    variants(width, heigh, quantity, path, False)
+    variants(width, heigh, quantity, path, True)

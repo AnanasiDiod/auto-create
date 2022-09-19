@@ -46,11 +46,10 @@ def wall(width, heigh, quantity, nh, nw, path=str(), side=False):
                    str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')
     else:
         if side:
-            p.set_xy(192 + (heigh - 400)/2, -(170.8 + (width - 400)/2))
-            p.circle(0, 0, 4.9/2)
-            p.circle(0, -(137.8 + (width - 400)/2), 4.9/2)
             p.set_xy(192 + (heigh - 400)/2, -68)
             p.circle(0, 0, 4.9/2)
+            p.circle(0, -(102.8 + (width - 400)/2), 4.9/2)
+            p.circle(0, -(102.8 + (width - 400)/2), 4.9/2)
             doc.saveas(path+"Половина лопатки передняя "+str(width) +
                        'x'+str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
         else:

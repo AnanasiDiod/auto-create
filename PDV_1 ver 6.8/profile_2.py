@@ -177,6 +177,19 @@ def profile(width, heigh, quantity, path=str(), ver=False):
         doc.saveas(path+"Профиль 2 верх "+str(width)+'x' +
                    str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
     else:
+        p.set_xy(-32.64, -(198.70 + (width - 400)/2))
+        p.go_line(0, -7)
+        p.go_line(0.75, 0)
+        p.go_line(0, 3.125)
+        p.go_line(2.5, 0)
+        p.go_line(0, -3.125)
+        p.go_line(0.75, 0)
+        p.go_line(0, 7)
+        p.go_line(-0.75, 0)
+        p.go_line(0, -3.125)
+        p.go_line(-2.5, 0)
+        p.go_line(0, 3.125)
+        p.go_line(-0.75, 0)
         doc.saveas(path+"Профиль 2 низ "+str(width)+'x' +
                    str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
 
