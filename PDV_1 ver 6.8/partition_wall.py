@@ -41,7 +41,7 @@ def wall(width, heigh, quantity, nh, nw, path=str(), side=False):
     p.circle(0, 0, 4.9/2)
     p.circle(34, 0, 4.9/2)
 
-    if width < 400 and heigh < 400 or heigh < 200:
+    if width < 500 and heigh < 500 or heigh < 200:
         doc.saveas(path+"Половина лопатки "+str(width)+'x' +
                    str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')
     else:

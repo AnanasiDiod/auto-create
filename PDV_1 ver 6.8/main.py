@@ -71,7 +71,7 @@ def main():
             supports.main(width, heigh, quantity, path + "0,8мм/")
             support_of_axis.main(width, heigh, quantity, path + "0,8мм/")
             ring.main(width, heigh, quantity, path + "2мм/")
-            if (width >= 400 or heigh >= 400) and heigh >= 200:
+            if not(width < 500 and heigh < 500 or heigh < 200):
                 edge.main(width, heigh, quantity, path + "0,8мм/")
     except:
         print("Ошибка сохранения файла! Сообщите о проблеме разработчику!")
@@ -81,7 +81,7 @@ def main():
 
 print("Обратите внимание, что в папке не должно находиться несколько позиций с одинаоквыми названиями папок во избежание коллизии\nНе используйте данную программу для производства чертежей для клапанов хотя бы одним размером меньше 150")
 ans = 'Д'
-while ans in ('Д', 'д', 'L', 'l'):
+while ans in ('Д', 'д', 'L', 'l',''):
     main()
     message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи\nПросто нажмите Enter, если путь не поменялся: '
     ans = input('Хотите сделать ещё одну позицию? (Д/Н)')

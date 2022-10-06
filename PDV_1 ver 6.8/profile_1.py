@@ -36,9 +36,9 @@ def main(width, heigh, quantity, path=str()):
     p.circle(242.4, 0, 4.9/2)
     # Отверстия под уголки верхние
     p.circle(-293.84, -28.34, 4.9/2)
-    p.circle(0, -27, 4.9/2)
+    p.circle(0, -22, 4.9/2)
     p.circle(345.28, 0, 4.9/2)
-    p.circle(0, 27, 4.9/2)
+    p.circle(0, 22, 4.9/2)
     # Отверстия под боковины
     p.circle(-218.34, -6.2, 4.9/2)
     p.circle(-58.6, 0, 4.9/2)
@@ -49,9 +49,9 @@ def main(width, heigh, quantity, path=str()):
     p.circle(242.4, 0, 4.9/2)
     # Отверстия под уголки нижние
     p.circle(51.44, 28.34, 4.9/2)
-    p.circle(0, 27, 4.9/2)
+    p.circle(0, 22, 4.9/2)
     p.circle(-345.28, 0, 4.9/2)
-    p.circle(0, -27, 4.9/2)
+    p.circle(0, -22, 4.9/2)
 
     # p.circle(68.34, 6.2, 4.9/2)
     # p.circle(58.6, 0, 4.9/2)

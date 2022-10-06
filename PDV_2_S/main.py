@@ -4,7 +4,7 @@ import stripe_hor
 import axle_support
 import arm_1, arm_2
 import rib
-import profile_1
+import profile_1, profile_2, profile_3
 import os
 
 
@@ -62,6 +62,8 @@ def main():
         rib.main(width, heigh, quantity, path + "1мм/")
         damper.main(width, heigh, quantity, nh, nw, path + "0,8мм/")
         profile_1.main(width, heigh, quantity, path + "0,8мм/", Belimo)
+        profile_2.main(width, heigh, quantity, path + "0,8мм/")
+        profile_3.main(width, heigh, quantity, path + "0,8мм/")
     except:
         print("Ошибка сохранения файла! Сообщите о проблеме разработчику!")
     else:
