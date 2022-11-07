@@ -12,11 +12,11 @@ def main(width, heigh, quantity, nw, path=str()):
     p.go_line(14.35, 14)
     p.go_line(26.99, 0)
     p.go_line(14.35, -14)
-    p.go_line(0, -(317.6 + (width - 400)))
+    p.go_line(0, -(width - 82.4))
     p.go_line(-14.35, -14)
     p.go_line(-26.99, 0)
     p.go_line(-14.35, 14)
-    p.go_line(0, 317.6 + (width - 400))
+    p.go_line(0, width - 82.4)
     p.go_init()
 
     p.set_xy(6.1, -6)

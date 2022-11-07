@@ -10,7 +10,7 @@ def main(width, heigh, quantity, path=str()):
     p.msp = msp
 
     p.go_line(198.29, 0)
-    p.go_line(0, -(315.6 + (width - 400)))
+    p.go_line(0, -(width - 84.4))
     p.go_line(-198.29, 0)
     p.go_init()
 
