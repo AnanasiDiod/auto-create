@@ -9,11 +9,11 @@ def main(width, heigh, quantity, path=str()):
     p = point()
     p.msp = msp
 
-    p.go_line(362 + (width - 400), 0)
+    p.go_line(width - 38, 0)
     p.go_line(0, -8.595)
     p.go_line(-11, 0)
     p.go_line(0, -19.04)
-    p.go_line(-(340 + (width - 400)), 0)
+    p.go_line(-(width - 60), 0)
     p.go_line(0, 19.04)
     p.go_line(-11, 0)
     p.go_line(0, 8.595)
