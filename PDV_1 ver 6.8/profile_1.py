@@ -59,12 +59,20 @@ def main(width, heigh, quantity, path=str()):
     doc.saveas(path+"Профиль 1 "+str(width)+'x' +
                str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
 
-    p.set_xy(31, -(182.64 + (heigh - 400) / 2))
-    p.circle(0, 0, 3.25)
-    p.circle(240.4, 0, 3.25)
-    p.circle(0, -90, 3.25)
-    p.circle(-240.4, 0, 3.25)
-    p.circle(50.2, 45, 9)
+    if heigh <= 100:
+        p.set_xy(31, -(192.64 + (heigh - 400) / 2))
+        p.circle(0, 0, 3.25)
+        p.circle(240.4, 0, 3.25)
+        p.circle(0, -70, 3.25)
+        p.circle(-240.4, 0, 3.25)
+        p.circle(50.2, 35, 9)
+    else:
+        p.set_xy(31, -(182.64 + (heigh - 400) / 2))
+        p.circle(0, 0, 3.25)
+        p.circle(240.4, 0, 3.25)
+        p.circle(0, -90, 3.25)
+        p.circle(-240.4, 0, 3.25)
+        p.circle(50.2, 45, 9)
 
     doc.saveas(path+"Профиль 1 под привод "+str(width)+'x' +
                str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')

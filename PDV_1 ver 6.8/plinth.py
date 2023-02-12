@@ -39,11 +39,18 @@ def main(width, heigh, quantity, path=str()):
     p.go_arc(1, 5)
     p.go_init()
 
-    p.circle(-35.08, -31.44, 3.5)
-    p.circle(0, -90, 3.5)
-    p.circle(272.56, 0, 3.5)
-    p.circle(0, 90, 3.5)
-    p.circle(-206.28, -45, 9)
+    if heigh <= 100:
+        p.circle(-35.08, -41.44, 3.5)
+        p.circle(0, -70, 3.5)
+        p.circle(272.56, 0, 3.5)
+        p.circle(0, 70, 3.5)
+        p.circle(-206.28, -35, 9)
+    else:
+        p.circle(-35.08, -31.44, 3.5)
+        p.circle(0, -90, 3.5)
+        p.circle(272.56, 0, 3.5)
+        p.circle(0, 90, 3.5)
+        p.circle(-206.28, -45, 9)
 
     doc.saveas(path+"Площадка "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')

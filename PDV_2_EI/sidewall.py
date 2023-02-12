@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def main(width, heigh, quantity, nh, path=str()):
+def main(width, heigh, quantity, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -29,5 +29,5 @@ def main(width, heigh, quantity, nh, path=str()):
     p.set_xy(44.74, 71.8 - heigh)
     p.circle(0, 0, 5.5)
 
-    doc.saveas(path+"Боковина "+str(width)+'x' +
+    doc.saveas(path+'Боковина '+str(width)+'x' +
                str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')

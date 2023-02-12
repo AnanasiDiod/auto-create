@@ -27,8 +27,6 @@ def main():
     quantity = int(input('Количество в резке(шт): '))
     path = g_path + "/Противопожарный клапан ПДВ-1 (Пр) " + str(
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
-    # width, heigh, quantity = 400, 400, 1
-    # path = "C:/Users/vip/Documents/Danila/scripts/test/Клапан противопожарный ПДВ-1(Пр) " + str(width) + "x" + str(heigh) +" - " + str(quantity) + ' шт'+ '/'
 
     ei150 = False
 

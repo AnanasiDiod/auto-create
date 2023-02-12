@@ -140,13 +140,21 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.circle(0, -(367.8 + (width - 400)), 4.9/2)
     p.circle(-242.4, 0, 4.9/2)
     # крепление уголков
-    if ver:
-        p.set_xy(54.94, -48.5)
+    if width > 100:
+        if ver:
+            p.set_xy(54.94, -48.5)
+        else:
+            p.set_xy(116.34, -48.5)
+        p.circle(0, 0, 4.9/2)
+        p.circle(0, -(151 + (width - 400)/2), 4.9/2)
+        p.circle(0, -(151 + (width - 400)/2), 4.9/2)
     else:
-        p.set_xy(116.34, -48.5)
-    p.circle(0, 0, 4.9/2)
-    p.circle(0, -(151 + (width - 400)/2), 4.9/2)
-    p.circle(0, -(151 + (width - 400)/2), 4.9/2)
+        if ver:
+            p.set_xy(54.94, -38.5)
+        else:
+            p.set_xy(116.34, -38.5)
+        p.circle(0, 0, 2.45)
+        p.circle(0, -22, 2.45)
     # метка
     if ver:
         p.set_xy(-30.94, -(203 + (width - 400)/2))

@@ -26,7 +26,8 @@ def vertical(width, heigh, quantity, nh, path=str()):
         p.circle(43.48, 0, 4.9/2)
         p.set_xy(6.1, -(5 + (i + 1) * dh))
 
-    p.set_xy(27.845, 96.4 - heigh)
+    p.set_xy(27.845, -23.4)
+    p.circle(0, 0, 5.65)
 
     doc.saveas(path+"Боковина лопатки вертикальая"+str(width)+'x' +
                str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')

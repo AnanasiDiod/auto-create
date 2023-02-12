@@ -8,35 +8,20 @@ def wall(width, heigh, quantity, path=str()):
     msp = doc.modelspace()
     p = point()
     p.msp = msp
-    p.go_line(156.13, 0)
-    p.go_arc(8, 16)
-    p.go_arc(7, 16)
-    p.go_arc(6, 16)
-    p.go_arc(5, 16)
-    p.go_line(-156.13, 0)
-    p.go_arc(4, 16)
-    p.go_arc(3, 16)
-    p.go_arc(2, 16)
-    p.go_arc(1, 16)
+    p.go_line(97.52, 0)
+    p.go_line(0, 23.8 - heigh)
+    p.go_line(-64.48, 0)
+    p.go_line(0, 1)
+    p.go_line(-33.04, 0)
+    p.go_arc(4, 2)
+    p.go_arc(3, 2)
+    p.go_line(0, -(28.8 - heigh))
+    p.go_arc(2, 2)
+    p.go_arc(1, 2)
     p.go_init()
 
-    p.circle(-8, -16, 6.5/2)
-
-    p.set_xy(115.22, -12)
-    p.go_line(31.2, 0)
-    p.set_xy(115.22, -20)
-    p.go_line(31.2, 0)
-
-    p.set_xy(108, -16)
-    p.circle(0, 0, 16.5/2)
-    p.circle(45.63, 0, 16.5/2)
-
-    if width < 500:
-        mul = 1
-    print('рычаг 1 готов')
-
-    doc.saveas(path+"Рычаг 1 "+str(width)+'x'+str(heigh) +
-               ' 2мм ' + str(quantity * mul)+'шт.dxf')
+    doc.saveas(path+"Боковина лопатки вертикальая"+str(width)+'x' +
+               str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')
 
 
 wall(900, 700, 1, 'D:/Рабочий стол/git projects/test/')

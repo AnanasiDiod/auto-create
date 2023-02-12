@@ -19,9 +19,13 @@ def main(width, heigh, quantity, path=str()):
     p.go_line(0, 8.595)
     p.go_init()
 
-    p.circle(30, -19.54, 4.9/2)
-    p.circle(151 + (width - 400)/2, 0, 4.9/2)
-    p.circle(151 + (width - 400)/2, 0, 4.9/2)
+    if width > 100:
+        p.circle(30, -19.54, 4.9/2)
+        p.circle(151 + (width - 400)/2, 0, 4.9/2)
+        p.circle(151 + (width - 400)/2, 0, 4.9/2)
+    else:
+        p.circle(20, -19.54, 2.45)
+        p.circle(22, 0, 2.45)
 
     doc.saveas(path+"Уголок "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity * 2)+'шт.dxf')
