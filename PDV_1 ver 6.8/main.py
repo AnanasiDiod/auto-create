@@ -55,7 +55,7 @@ def main():
             print('Все папки созданы успешно')
             nh = (((384 + (heigh - 400) - 23 * 2) // 120) // 2 + 1) * 2
             nw = ((int(341.6) + 1 + (width - 400) - 20 * 2) // 120) + 2
-            if width < 300 and width >= 200:
+            if width <= 300 and width > 200:
                 nh = 4
             cup.main(width, heigh, quantity, path + "0,8мм/")
             sidewall.main(width, heigh, quantity, path + "0,8мм/")

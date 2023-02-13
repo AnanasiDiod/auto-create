@@ -37,9 +37,10 @@ def wall(width, heigh, quantity, nh, nw, path=str(), side=False):
             p.circle(0, 0, 4.9 / 2)
             p.circle(364.2 + (heigh - 400), 0, 4.9/2)
             p.set_xy(9.9, -(20 + (i + 1) * dw))
-            p.set_xy(175 + (heigh - 400) / 2, -41.1)
-            p.circle(0, 0, 4.9/2)
-            p.circle(34, 0, 4.9/2)
+        p.set_xy(175 + (heigh - 400) / 2, -41.1)
+        p.circle(0, 0, 4.9/2)
+        p.circle(34, 0, 4.9/2)
+
     else:
         p.set_xy(9.9, -15.8)
         p.circle(0, 0, 2.45)

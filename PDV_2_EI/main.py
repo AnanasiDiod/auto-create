@@ -61,8 +61,8 @@ def main():
             print('Не удалось создать папку "1мм"')
         else:
             print('Все папки созданы успешно')
-        nh = ((heigh - 18) // 120) + 2
-        nw = ((width - 93) // 120) + 2
+        nh = ((heigh - 18) // 120) + 1
+        nw = ((width - 93) // 120) + 1
 
         arm_1.main(width, heigh, quantity, path + "2мм/")
         arm_2.main(width, heigh, quantity, path + "2мм/")
