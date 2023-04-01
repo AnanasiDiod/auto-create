@@ -23,7 +23,6 @@ def main(width, heigh, quantity, path=str()):
     p.circle(0, 196.25, 11 / 2)
 
 
-    doc.saveas(path+"Боковина"+str(width)+'x'+str(heigh) +
+    doc.saveas(path+"Боковина "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 
-#main(400,400,2)

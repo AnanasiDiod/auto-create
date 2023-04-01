@@ -56,6 +56,9 @@ def main(width, heigh, quantity, path=str()):
     p.circle(-167.11, -63.7, 6.2 / 2)
     p.circle(0, 413.01, 6.2 / 2)
 
-    doc.saveas(path+"Половина лопатки с отгибами "+str(width)+'x'+str(heigh) +
+    p.circle(67.64, -72.5, 4.9 / 2)
+    p.circle(34, 0, 4.9 / 2)
+
+    doc.saveas(path+"Половина лопатки с отгибами под привод "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 

@@ -29,5 +29,5 @@ class point:
             s = 2 * radius * cos(radians(67.5))
             self.x += s * cos(radians(67.5 + (direction - 2) * 45))
             self.y += s * sin(radians(67.5 + (direction - 2) * 45))
-        
+
 

@@ -10,13 +10,8 @@ def main(width, heigh, quantity, path=str()):
     p.msp = msp
 
     p.go_line(154.46, 0)
-    p.go_line(0, -8.98)
-    p.set_xy(154.46, -11.02)
-    p.go_arc(3, 1.5)
-    p.go_arc(2, 1.5)
-    p.set_xy(154.46, -11.02)
 
-    p.go_line(0, -85.18)
+    p.go_line(0, -96.2)
     p.go_line(-22.24, 0)
     p.go_line(0, -5.24)
     p.go_line(102.25, 0)
@@ -34,12 +29,6 @@ def main(width, heigh, quantity, path=str()):
     p.go_line(102.25, 0)
     p.go_line(0, 5.24)
     p.go_line(-22.24, 0)
-    p.go_line(0, 85.18)
-
-    p.set_xy(0, -8.98)
-    p.go_arc(7, 1.5)
-    p.go_arc(6, 1.5)
-    p.set_xy(0, -8.98)
 
     p.go_init()
 
