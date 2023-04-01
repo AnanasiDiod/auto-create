@@ -1,6 +1,4 @@
 import ezdxf as dxf
-import pylab as p
-
 from point import *
 
 
@@ -53,13 +51,5 @@ def main(width, heigh, quantity, path=str()):
     p.circle(0, 359, 4.9 / 2)
     p.circle(58.6, 0, 4.9 / 2)
 
-    p.circle(15.7, -31.18, 6.5 / 2)
-    p.circle(0, -240.4, 6.5 / 2)
-    p.circle(-90, 0, 6.5 / 2)
-    p.circle(0, 240.4, 6.5 / 2)
-
-    p.circle(45, -50.2, 18 / 2)
-    doc.saveas(path+"Профиль 1 под привод"+str(width)+'x'+str(heigh) +
+    doc.saveas(path+"Профиль 1 "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
-
-main(400,400,1)

@@ -32,3 +32,4 @@ def main(width, heigh, quantity, path=str()):
     doc.saveas(path+"Боковина лопатки горизонтальная "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 
+main(200,200,1)

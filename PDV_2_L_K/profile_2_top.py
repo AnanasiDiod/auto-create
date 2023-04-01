@@ -41,7 +41,6 @@ def main(width, heigh, quantity, path=str()):
     p.go_arc(7, 5)
     p.go_line(0, -446)
 
-
     p.go_arc(6, 5)
     p.go_arc(5, 5)
     p.go_line(-78.44, 0)
@@ -140,6 +139,33 @@ def main(width, heigh, quantity, path=str()):
     p.circle(0, -151, 4.9 / 2)
     p.circle(0, -151, 4.9 / 2)
 
-    doc.saveas(path+"Профиль 2 верх"+str(width)+'x'+str(heigh) +
+    #метка
+    p.set_xy(3.7, -226.5)
+    p.go_arc(4, 1.5)
+    p.go_arc(3, 1.5)
+    p.go_arc(2, 1.5)
+    p.go_arc(1, 1.5)
+    p.go_arc(4, 2.02)
+    p.go_arc(3, 2.02)
+    p.go_arc(2, 2.02)
+    p.go_arc(1, 2.02)
+    p.go_line(1.5, 0)
+    p.go_line(0, -7)
+    p.go_line(-0.75, 0)
+    p.go_line(0, 6.21)
+    p.go_line(-0.75, 0)
+    p.set_xy(3.7, -226.5)
+    p.go_line(0, 0.75)
+    p.go_arc(4, 1.5 / 2)
+    p.go_arc(3, 1.5 / 2)
+    p.go_arc(2, 1.5 / 2)
+    p.go_arc(1, 1.5 / 2)
+    p.go_line(0, 1.46)
+    p.go_arc(4, 2.54 / 2)
+    p.go_arc(3, 2.54 / 2)
+    p.go_arc(2, 2.54 / 2)
+    p.go_arc(1, 2.54 / 2)
+
+    doc.saveas(path+"Профиль 2 верх "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 

@@ -10,7 +10,6 @@ def main(width, heigh, quantity, path=str()):
     p.msp = msp
 
     p.go_line(154.46, 0)
-
     p.go_line(0, -96.2)
     p.go_line(-22.24, 0)
     p.go_line(0, -5.24)
@@ -29,7 +28,6 @@ def main(width, heigh, quantity, path=str()):
     p.go_line(102.25, 0)
     p.go_line(0, 5.24)
     p.go_line(-22.24, 0)
-
     p.go_init()
 
     p.circle(-70.01, -119.54, 3 / 2)
