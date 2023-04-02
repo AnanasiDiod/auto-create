@@ -14,19 +14,18 @@ def main(width, heigh, quantity, path=str()):
     p.go_arc(2, 9.74)
     p.go_arc(1, 9.74)
     p.go_arc(8, 9.74)
-    p.go_line(22.12, -33.8)
-    p.go_line(0, -5.24)
+    p.go_angle(315, 57.4)
 
-    p.go_line(145.75, 0)
+    p.go_line(128.53, 0)
     p.go_arc(8, 3)
     p.go_arc(7, 3)
     p.go_line(0, -339.6)
     p.go_arc(6, 3)
     p.go_arc(5, 3)
 
-    p.go_line(-145.75, 0)
-    p.go_line(0, -5.24)
-    p.go_line(-22.12, -33.8)
+    p.go_line(-128.53, 0)
+    p.go_angle(225, 57.4)
+
     p.go_arc(5, 9.74)
     p.go_arc(4, 9.74)
     p.go_arc(3, 9.74)
@@ -54,9 +53,9 @@ def main(width, heigh, quantity, path=str()):
     p.circle(0, -95.2, 4.9 / 2)
     p.circle(0, -95.2, 4.9 / 2)
 
+    p.circle(-167.11, -63.7, 6.2 / 2)
+    p.circle(0, 413.01, 6.2 / 2)
 
-
-    doc.saveas(path+"Половина лопатки с отгибами"+str(width)+'x'+str(heigh) +
+    doc.saveas(path+"Половина лопатки с отгибами "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 
-#main(400,400,1)

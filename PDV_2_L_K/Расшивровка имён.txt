@@ -1,0 +1,21 @@
+area - площадка
+axis support - поддержка оси
+cover of actuator - крышка привода
+half of spacula - половина лопатки
+half of spacula for actuator - половина лопатки под привод
+half of spacula with fold - половина лопатки с отгибами
+half of spacula with fold for actuator - половина лопатки с отгибами под привод
+profile 1 - профиль 1
+profile 1 for actuator - профиль 1 под привод
+profile 2 bottom - профиль 2 низ
+profile 2 top - профиль 2 верх
+sidewall - боковина
+sidewall for actuator - боковина под привод
+sidewall of spacula - боковина лопатки
+sidewall of spacula for actuator - боковина лопатки под привод
+sidewall of spacula hor - боковина лопатки горизонтальная
+
+
+axis support - поддержка оси
+washer - шайба
+edge - грань
