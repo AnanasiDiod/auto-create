@@ -1,4 +1,17 @@
 import os
+import area
+import axis_support
+import corner_top_bottom
+import cover_of_actuator
+import edge
+import half_of_spacula_with_fold
+import half_of_spacula
+import profile_1
+import profile_2
+import sidewall_of_spacula
+import sidewall_of_spacula_hor
+import sidewall
+import washer
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
 g_path = ''
@@ -12,7 +25,7 @@ def main():
     width = int(input('Ширина клапана в мм: '))
     heigh = int(input('Высота клапана в мм: '))
     quantity = int(input('Количество в резке(шт): '))
-    path = g_path + "/Клапан дымовой ПДВ-2 стеновой лифтовый Китай" + str(
+    path = g_path + "/Клапан дымовой ПДВ-2 канальный лифтовый " + str(
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
     try:
         try:
@@ -37,10 +50,32 @@ def main():
             print('Не удалось создать папку "2мм"')
         else:
             print('Все папки созданы успешно')
-        #количество горизонтальных отверстий в лопатках
-        nw = ((width - 114.4) // 120) + 1
-        #количество горизонтальных отверстий в лопатках
-        
+        # количество горизонтальных отверстий в лопатках
+        nw = int((width - 114.4) // 120 + 2)
+        # количество лопаток
+        np = int(heigh / 220) + 1
+        # высота лопатки
+        hp = (heigh - 7.5 * (np + 1)) / np
+        # шаг лопаток
+        sp = hp + 7.5
+
+        area.main(width, heigh, quantity, path + "/0,8мм/")
+        axis_support.main(width, heigh, quantity, path + "/2мм/")
+        corner_top_bottom.main(width, heigh, quantity, path + "/0,8мм/")
+        cover_of_actuator.main(width, heigh, quantity, path + "/0,8мм/")
+        edge.main(width, heigh, quantity, np, sp, path + "/2мм/")
+        half_of_spacula_with_fold.main(
+            width, heigh, quantity, np, hp, nw, path + "/0,8мм/")
+        half_of_spacula.main(width, heigh, quantity, np,
+                             hp, nw, path + "/0,8мм/")
+        profile_1.main(width, heigh, quantity, np, sp, path + "/0,8мм/")
+        profile_2.main(width, heigh, quantity, path + "/0,8мм/")
+        sidewall_of_spacula_hor.main(
+            width, heigh, quantity, nw, np, path + "/0,8мм/")
+        sidewall_of_spacula.main(
+            width, heigh, quantity, np, hp, path + "/0,8мм/")
+        sidewall.main(width, heigh, quantity, np, sp, path + "/0,8мм/")
+        washer.main(width, heigh, quantity, np, path + "/2мм/")
 
     except:
         print("Ошибка сохранения файла! Сообщите о проблеме разработчику!")

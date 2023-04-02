@@ -1,6 +1,4 @@
 import ezdxf as dxf
-import pylab as p
-
 from point import *
 
 
@@ -28,4 +26,3 @@ def main(width, heigh, quantity, path=str()):
 
     doc.saveas(path+"Поддержка оси "+str(width)+'x'+str(heigh) +
                ' 2мм ' + str(quantity)+'шт.dxf')
-
