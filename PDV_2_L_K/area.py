@@ -47,4 +47,3 @@ def main(width, heigh, quantity, path=str()):
 
     doc.saveas(path+"Площадка "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
-
