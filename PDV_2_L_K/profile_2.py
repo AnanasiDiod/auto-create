@@ -121,7 +121,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.go_arc(2, 4.5)
 
     # нижний правый угол
-    p.set_xy(232.83, -14.85 - width)
+    p.set_xy(232.83, -21.3 - width)
     p.go_angle(135, 10)
     p.go_arc(3, 4.5)
     p.go_arc(2, 4.5)
@@ -134,11 +134,11 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.go_arc(4, 4.5)
 
     # крепление к профилю 1
-    p.set_xy(39.44, -15.6)
+    p.set_xy(39.44, -14)
     p.circle(0, 0, 4.9/2)
     p.circle(71.2, 0, 4.9/2)
     p.circle(71.2, 0, 4.9/2)
-    p.circle(0, - width + 32.2, 4.9/2)
+    p.circle(0, - width + 29, 4.9/2)
     p.circle(-71.2, 0, 4.9/2)
     p.circle(-71.2, 0, 4.9/2)
 
