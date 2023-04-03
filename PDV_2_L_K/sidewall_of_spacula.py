@@ -20,7 +20,7 @@ def sidewall(width, heigh, quantity, np, hp, actuator, path=str()):
 
     p.circle(-10.12, -20, 4.9 / 2)
     p.circle(43.48, 0, 4.9 / 2)
-    p.circle(0, -hp + 76, 4.9 / 2)
+    p.circle(0, -hp + 46, 4.9 / 2)
     p.circle(-43.48, 0, 4.9 / 2)
 
     if actuator:

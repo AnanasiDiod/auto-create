@@ -19,7 +19,7 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     p.go_line(hp - 60.215, 0)
     p.go_arc(8, 3)
     p.go_arc(7, 3)
-    p.go_line(0, -heigh + 60.4)
+    p.go_line(0, -width + 60.4)
     p.go_arc(6, 3)
     p.go_arc(5, 3)
 
@@ -34,21 +34,21 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
 
     p.go_arc(4, 3)
     p.go_arc(3, 3)
-    p.go_line(0, heigh - 60.4)
+    p.go_line(0, width - 60.4)
     p.go_arc(2, 3)
     p.go_arc(1, 3)
     p.go_init()
 
     p.circle(11.74, 33.7, 6.2 / 2)
-    p.circle(0, - heigh - 13.01, 6.2 / 2)
+    p.circle(0, - width - 13.01, 6.2 / 2)
 
     p.set_xy(25, -6.1)
     p.circle(0, 0, 4.9 / 2)
     p.circle(hp - 46, 0, 4.9 / 2)
-    p.circle(0, -heigh + 66.6, 4.9 / 2)
+    p.circle(0, -width + 66.6, 4.9 / 2)
     p.circle(- hp + 46, 0, 4.9 / 2)
 
-    dw = (heigh - 114.4)/(nw - 1)
+    dw = (width - 114.4)/(nw - 1)
     for i in range(nw):
         p.set_xy(13.9, -(30 + i * dw))
         p.circle(0, 0, 4.9 / 2)
@@ -57,7 +57,7 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     doc.saveas(path+"Половина лопатки с отгибами "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str((np - 1) * quantity)+'шт.dxf')
 
-    p.set_xy(hp/2 - 15, -38.8)
+    p.set_xy(hp/2 - 15, -38.2)
     p.circle(0, 0, 4.9 / 2)
     p.circle(34, 0, 4.9 / 2)
 
