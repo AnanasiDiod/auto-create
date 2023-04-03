@@ -12,6 +12,7 @@ import sidewall_of_spacula
 import sidewall_of_spacula_hor
 import sidewall
 import washer
+from math import ceil
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
 g_path = ''
@@ -51,7 +52,7 @@ def main():
         else:
             print('Все папки созданы успешно')
         # количество горизонтальных отверстий в лопатках
-        nw = int((width - 114.4) // 120 + 2)
+        nw = ceil((width - 114.4)/120 + 1)
         # количество лопаток
         np = int(heigh / 220) + 1
         # высота лопатки

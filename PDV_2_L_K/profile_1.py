@@ -30,14 +30,14 @@ def main(width, heigh, quantity, np, sp, path=str()):
     p.go_line(34.08, 0)
     p.go_init()
 
-    p.circle(35, -14, 4.9 / 2)
+    p.circle(35, -14.7, 4.9 / 2)
     p.circle(71.2, 0, 4.9 / 2)
     p.circle(71.2, 0, 4.9 / 2)
-    p.circle(0, - heigh - 27.28, 4.9 / 2)
+    p.circle(0, - heigh - 25.88, 4.9 / 2)
     p.circle(-71.2, 0, 4.9 / 2)
     p.circle(-71.2, 0, 4.9 / 2)
 
-    p.circle(-51.44, 27.44, 4.9 / 2)
+    p.circle(-51.44, 26.74, 4.9 / 2)
     p.circle(0, 27, 4.9 / 2)
     p.circle(0, heigh - 81.6, 4.9 / 2)
     p.circle(0, 27, 4.9 / 2)
