@@ -19,8 +19,8 @@ def main(width, heigh, quantity, nw, np, path=str()):
     p.go_init()
 
     if width > 100:
-        p.set_xy(6.1, -6)
-        dw = (heigh - 114.4)/(nw - 1)
+        p.set_xy(6.1, -16)
+        dw = (width - 114.4)/(nw - 1)
         for i in range(nw):
             p.circle(0, 0, 4.9 / 2)
             p.circle(43.48, 0, 4.9/2)

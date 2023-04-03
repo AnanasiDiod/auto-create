@@ -23,4 +23,4 @@ def main(width, heigh, quantity, path=str()):
     p.circle(width/2 - 49, 0, 4.9 / 2)
 
     doc.saveas(path+"Уголок верх низ "+str(width)+'x'+str(heigh) +
-               ' 0,8мм ' + str(quantity)+'шт.dxf')
+               ' 0,8мм ' + str(quantity * 2)+'шт.dxf')
