@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def wall(width, heigh, quantity, np, hp, sp, path=str()):
+def profile(width, heigh, quantity, path=str(), ver=False):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -152,7 +152,7 @@ def wall(width, heigh, quantity, np, hp, sp, path=str()):
         p.set_xy(113.78, -38.5)
         p.circle(0, 0, 2.45)
         p.circle(0, -22, 2.45)
-    ver = False
+
     # метка
     if ver:
         p.set_xy(-30.94, -3 - width/2)
@@ -182,13 +182,25 @@ def wall(width, heigh, quantity, np, hp, sp, path=str()):
         p.go_arc(1, 2.54/2)
         doc.saveas(path+"Профиль 2 верх "+str(width)+'x' +
                    str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
+    else:
+        p.set_xy(249.92, - width/2 + 4)
+        p.go_line(0, -7)
+        p.go_line(0.75, 0)
+        p.go_line(0, 3.125)
+        p.go_line(2.5, 0)
+        p.go_line(0, -3.125)
+        p.go_line(0.75, 0)
+        p.go_line(0, 7)
+        p.go_line(-0.75, 0)
+        p.go_line(0, -3.125)
+        p.go_line(-2.5, 0)
+        p.go_line(0, 3.125)
+        p.go_line(-0.75, 0)
 
-    doc.saveas(path+"ТЕСТ"+str(width)+'x' +
-               str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')
+        doc.saveas(path+"Профиль 2 низ "+str(width)+'x' +
+                   str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
 
 
-n = int(400 / 220) + 1
-wall(400, 400, 1, n, (400 - 7.5 * (n + 1)) / n, (400 - 7.5 * (n + 1)) / n + 7.5,
-     'D:/Рабочий стол/git projects/test/')
-print((400 - 7.5 * (2 + 1)) / 2)
-# print(((400 - 114.4) // 120) + 1)
+def main(width, heigh, quantity, path=str()):
+    profile(width, heigh, quantity, path, False)
+    profile(width, heigh, quantity, path, True)

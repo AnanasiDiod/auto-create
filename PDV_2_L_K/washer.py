@@ -4,7 +4,7 @@ import pylab as p
 from point import *
 
 
-def main(width, heigh, quantity, path=str()):
+def main(width, heigh, quantity, np, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -15,5 +15,4 @@ def main(width, heigh, quantity, path=str()):
     p.circle(0, 0, 19 / 2)
 
     doc.saveas(path+"Шайба "+str(width)+'x'+str(heigh) +
-               ' 2мм ' + str(quantity)+'шт.dxf')
-
+               ' 2мм ' + str(quantity * 3 * 2 * np)+'шт.dxf')
