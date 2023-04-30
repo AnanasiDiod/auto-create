@@ -1,6 +1,4 @@
 import ezdxf as dxf
-import pylab as p
-
 from point import *
 
 

@@ -23,7 +23,7 @@ def wall(width, heigh, quantity, np, hp, sp, path=str()):
     p.circle(0, -hp + 46, 4.9 / 2)
     p.circle(-43.48, 0, 4.9 / 2)
 
-    actuator = True
+    actuator = False
 
     if actuator:
         p.set_xy(5.48, -hp/2 + 9.15)
