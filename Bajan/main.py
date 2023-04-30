@@ -2,20 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 
 
-def calculate_pdv_1_pr():
-    # Забираем значения из ячеек заполнения
-    width = int(width_tf.get())
-    heigh = int(heigh_tf.get())
-    cost_met = float(cost_tf.get())
-    add_cost_met = float(add_cost_tf.get())/100
-    cost_cut = float(cut_tf.get())
-    cost_vata = float(vata_tf.get())
-    cost_ogneza = float(ogneza_tf.get())
-    cost_krep = float(krep_tf.get())
-    cost_drive = float(drive_tf.get())
-    cost_etc = float(etc_tf.get())
-    cost_axis = float(axis_tf.get())
-
+def calculate_pdv_1_pr(width, heigh, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
+                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
     # Расчёт длины реза. Каждая строка - отдельная деталь
     len_cut = heigh * (4 + 4 + 4 + 4) + width * (4 + 4 + 4 + 4) + (1076.346 + 37.699 +  # Крышка привода
                                                                    # Боковина лопатки вертикаль
@@ -42,6 +30,24 @@ def calculate_pdv_1_pr():
     nh = (((heigh - 66) // 120) // 2 + 1) * 2
     nw = ((width - 98) // 120) + 2
     len_cut += (nh + nw) * 8 * 15.39
+    # Расчёт длины гиба
+    len_bend = ((heigh - 4) * 4 * 2 +  # Боковина
+                # Боковина лопатки
+                (heigh - 18) * 2 * 2 +
+                # Боковина лопатки горизонтальная
+                (width - 54.4) * 2 * 2 +
+                # Крыщка привода
+                494.8 +
+                # Площадка
+                864.8 +
+                # Поддержка оси
+                222.72 +
+                # Профиль 1
+                (312.4 * 2 + (heigh - 7.6) * 4) * 2 +
+                # Профиль 2
+                (width - 1) * 2 * 2
+                # Уголок
+                (width - 60) * 2)
     # Расчёт площади металла
     area_met_korp = (103 * 2 + 391 * 2) * heigh + (389 * 2 + 27.64 * 2) * width - \
         (4 * 103 * 2 - 55 * 391 * 2 - 56 * 389 * 2 +
@@ -50,39 +56,30 @@ def calculate_pdv_1_pr():
         (55.69 * 2 + 0) * heigh + (55.69 * 2 + 0) * width - \
         (18 * 55.69 * 2 + 54 * 55.69 * 2) + 50 * 55.68
     # Расчёт площади утеплителя
-    area_vata = (heigh - 18) * (width - 54) / 1000000
+    # area_vata = (heigh - 18) * (width - 54) / 1000000
     # Длина огнезы
     len_ogneza = ((heigh - 4 + width - 54) * 2 + 40)/1000
     # Учёт наличия ребра
     if not(width < 500 and heigh < 500 or heigh < 200):
         len_cut += 548.58 + width * 2 - 84.4 * 2 + 15.39 * 9
         area_met_lopatka += (width - 84) * 198
-    # Расчёт "голой" стоимости металла и реза
+        len_bend += (width - 84.4) * 4
+    # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
+    val_bend = cost_bend * len_bend
     val_cut = len_cut * cost_cut / 1000
     area_met_lopatka /= 1000000
     area_met_korp /= 1000000
     val_met = (area_met_lopatka + area_met_korp) * cost_met
     print(cost_met)
 
-    messagebox.showinfo(
-        'Результаты подсчётов',
-        '''Длина реза: %s м
-Цена резки: %s руб
-Площадь металла корпус: %s м2
-Площадь металла лопатка: %s м2
-Стоимость металла: %s руб
-Площадь утеплителя: %s м2
-Стоимость утеплителя: %s руб
-Стоимость привода (-ов): %s руб
-Стоимость крепежа: %s руб
-Длина Огнезы: %s м
-Стоиость Огнезы: %s руб
-Стоимость осей: %s руб
-Стоимость прочих материалов: %s руб
-----------------------------------------------------
-Общая сумма: %s руб
-            ''' % (len_cut / 1000, val_cut, area_met_korp, area_met_lopatka, val_met, area_vata, area_vata * cost_vata,
-                   cost_drive, cost_krep, len_ogneza, len_ogneza * cost_ogneza, cost_axis, cost_etc, (val_cut + val_met + area_vata * cost_vata + cost_drive + cost_krep + len_ogneza * cost_ogneza + cost_axis + cost_etc)*(add_cost_met + 1)))
+    res = {'width': width, 'heigh': heigh, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
+           'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
+           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
+           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+    res['total'] = (val_cut + val_bend + cost_vata +
+                    cost_axis + cost_strip + cost_screw + extra_cost) * markup_box + cost_work + cost_drive * markup_drive
+
+    return res
 
 
 def calculate_pdv_1_kr():
@@ -114,6 +111,8 @@ frame = Frame(
     window,
     padx=10,  # Задаём отступ по горизонтали.
     pady=10,  # Задаём отступ по вертикали.
+
+
 )
 frame.pack(expand=True)
 # НАДПИСИ
