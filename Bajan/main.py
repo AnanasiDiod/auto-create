@@ -1,5 +1,5 @@
 import openpyxl as xl
-
+import os
 
 def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
@@ -334,8 +334,8 @@ def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
     ws['P2'] = str(round((res['markup_drive'] - 1) * 100, 2)) + '%'
     ws['Q1'] = 'Итоговая стоимость'
     ws['Q2'] = str(res['total'])
-
-    wb.save(path + '\\' + name + '.xlsx')
+    print(path + '\\' + name + '.xlsx')
+    wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'
 
 
