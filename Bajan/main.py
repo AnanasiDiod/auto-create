@@ -313,7 +313,7 @@ def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
     ws['F1'] = 'Стоимость резки'
     ws['F2'] = str(res['val_cut'])
     ws['G1'] = 'Стоимость гиба'
-    ws['G1'] = str(res['val_bend'])
+    ws['G2'] = str(res['val_bend'])
     ws['H1'] = 'Стоимость ваты'
     ws['H2'] = str(res['vata'])
     ws['I1'] = 'Стоимость оси(-ей)'
@@ -325,15 +325,24 @@ def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
     ws['L1'] = 'Дополнительные расходы'
     ws['L2'] = str(res['extra'])
     ws['M1'] = 'Наценка на корпус клапана'
-    ws['M2'] = str((res['markup_metall'] - 1) * 100) + '%'
+    ws['M2'] = str(round((res['markup_metall'] - 1) * 100, 2)) + '%'
     ws['N1'] = 'Стоимость работ'
     ws['N2'] = str(res['work'])
     ws['O1'] = 'Стоимость привода'
-    ws['M2'] = str(res['drive'])
+    ws['O2'] = str(res['drive'])
     ws['P1'] = 'Наценка на привод'
-    ws['M2'] = str((res['markup_drive'] - 1) * 100) + '%'
+    ws['P2'] = str(round((res['markup_drive'] - 1) * 100, 2)) + '%'
     ws['Q1'] = 'Итоговая стоимость'
-    ws['M2'] = str(res['total'])
+    ws['Q2'] = str(res['total'])
 
-    wb.save(path + name + '.xlsx')
+    wb.save(path + '\\' + name + '.xlsx')
     return name + '.xlsx'
+
+
+# res = {'width': 0, 'height': 1, 'quad': 2, 'cost_met': 3,
+#        'val_met': 4, 'val_cut': 5, 'val_bend': 6,
+#        'vata': 7, 'axis': 8, 'strip': 9, 'screw': 10,
+#        'extra': 11, 'markup_metall': 1.2, 'work': 13, 'drive': 14, 'markup_drive': 1.5}
+# res['total'] = 16
+
+# extract_to_excel(res, 1, 'jopa', 'D:\Загрузки\Telegram Desktop')
