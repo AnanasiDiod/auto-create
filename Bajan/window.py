@@ -1,20 +1,20 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFileDialog
 import sys
-from main import calculate_pdv_1_pr, calculate_pdv_1_kr, calculate_pdv_2_s_ei, calculate_pdv_2_s, calculate_pdv_2_k, calculate_pdv_2_ls, calculate_pdv_2_lk, extract_to_excel
+from main import *  # calculate_pdv_1_pr, calculate_pdv_1_kr, calculate_pdv_2_s_ei, calculate_pdv_2_s, calculate_pdv_2_k, calculate_pdv_2_ls, calculate_pdv_2_lk, extract_to_excel
 import os
+
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('main_window.ui', self)
         self.params_list = ['width', 'height', 'cost_met', 'cost_cut', 'cost_bend', 'cost_vata', 'cost_axis',
-                       'cost_strip', 'cost_screw', 'extra_cost', 'markup_box', 'cost_work', 'cost_drive', 'markup_drive']
+                            'cost_strip', 'cost_screw', 'extra_cost', 'markup_box', 'cost_work', 'cost_drive', 'markup_drive']
         self.setWindowTitle('Manager calculator')
         self.clear_params.clicked.connect(self.clear)
         self.calc_total.clicked.connect(self.make_total)
         self.make_excel.clicked.connect(self.save_project)
-
 
         self.show()
 
@@ -34,7 +34,7 @@ class Ui(QtWidgets.QMainWindow):
                    'calculate_pdv_2_k': calculate_pdv_2_k,
                    'calculate_pdv_2_ls': calculate_pdv_2_ls,
                    'calculate_pdv_2_lk': calculate_pdv_2_lk,
-                   'calculate_pdv_2_k_ei': '',
+                   'calculate_pdv_2_k_ei': calculate_pdv_2_k_ei,
                    }
         name_1 = self.name_1.currentText()
         name_2 = self.name_2.currentText()
@@ -70,9 +70,10 @@ class Ui(QtWidgets.QMainWindow):
             elif extra == '':
                 return methods['calculate_pdv_2_ls'], f'ПДВ-2 ({limit_fire_resistance})-Л-{no_nz} {width}х{height}-{actuator}'
         return None, None
+
     def get_params(self):
         params_dict = {}
-        for param in self.params_list :
+        for param in self.params_list:
             value = getattr(self, param).text()
             if value == '':
                 params_dict[param] = 0
@@ -92,8 +93,8 @@ class Ui(QtWidgets.QMainWindow):
         res = method(**self.get_params())
         self.total.setText(str(float('{:.2f}'.format(res['total']))))
 
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     window = Ui()
     app.exec_()
-
