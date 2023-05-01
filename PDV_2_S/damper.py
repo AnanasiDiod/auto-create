@@ -1,9 +1,10 @@
 import ezdxf as dxf
 from point import *
 
-def main(width, heigh, quantity, nh, nw, path = str()):
+
+def main(width, heigh, quantity, nh, nw, path=str()):
     doc = dxf.new()
-    doc.layers.add("FIGURE", color=2) 
+    doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
     p = point()
     p.msp = msp
@@ -29,24 +30,25 @@ def main(width, heigh, quantity, nh, nw, path = str()):
     p.go_line(18.51, 0)
     p.go_line(0, 18.51)
     p.go_init()
-    #вертикальные отверстия для доп пластин
+    # вертикальные отверстия для доп пластин
     dh = (270 + (heigh - 400))/nh
     for i in range(nh + 1):
         p.set_xy(11.03, -(30.64 + i * dh))
         p.circle(0, 0, 4.9/2)
         p.circle(328.2 + (width - 400), 0, 4.9/2)
-    #горизонтальные отверстия для доп пластин
+    # горизонтальные отверстия для доп пластин
     dw = (288.2 + (width - 400))/nw
     for i in range(nw + 1):
         p.set_xy(31.03 + i * dw, -30.64)
         p.circle(0, 0, 4.9/2)
-    #отверстия под ребро
+    # отверстия под ребро
     p.set_xy(74.13, -(186.74 + (heigh - 400)))
     p.circle(0, 0, 4.9/2)
     p.circle(202 + (width - 400), 0, 4.9/2)
-    #отверстия под ось
+    # отверстия под ось
     p.set_xy(-17.51, -(344.84 + (heigh - 400)))
     p.circle(0, 0, 5.5)
     p.circle(385.28 + (width - 400), 0, 5.5)
 
-    doc.saveas(path+"Лопатка "+str(width)+'x'+str(heigh)+' 0,8мм '+ str(quantity)+'шт.dxf')
+    doc.saveas(path+"Лопатка "+str(width)+'x'+str(heigh) +
+               ' 0,8мм ' + str(quantity)+'шт.dxf')

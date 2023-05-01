@@ -1,9 +1,10 @@
 import ezdxf as dxf
 from point import *
 
-def main(width, heigh, quantity, path = str()):
+
+def main(width, heigh, quantity, path=str()):
     doc = dxf.new()
-    doc.layers.add("FIGURE", color=2) 
+    doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
     p = point()
     p.msp = msp
@@ -31,4 +32,5 @@ def main(width, heigh, quantity, path = str()):
     p.circle(0, 0, 16.5/2)
     p.circle(45.63, 0, 16.5/2)
 
-    doc.saveas(path+"Рычаг 1 "+str(width)+'x'+str(heigh)+' 2мм '+ str(quantity * 2)+'шт.dxf')
+    doc.saveas(path+"Рычаг 1 "+str(width)+'x'+str(heigh) +
+               ' 2мм ' + str(quantity * 2)+'шт.dxf')
