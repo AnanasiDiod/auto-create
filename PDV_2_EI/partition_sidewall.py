@@ -59,4 +59,3 @@ def horisontal(width, heigh, quantity, nw, path=str()):
 
     doc.saveas(path+"Боковина лопатки горизонтальная "+str(width) +
                'x'+str(heigh)+' 0,8мм ' + str(quantity * 2)+'шт.dxf')
-
