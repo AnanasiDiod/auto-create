@@ -1,9 +1,10 @@
-from tkinter import *
-from tkinter import messagebox
+import openpyxl as xl
 
 
 def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     # Расчёт длины реза. Каждая строка - отдельная деталь
     len_cut = height * (4 + 4 + 4 + 4) + \
         width * (4 + 4 + 4 + 4) + \
@@ -72,7 +73,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met) * \
         markup_box + val_cut + val_bend + cost_work + cost_drive * markup_drive
 
@@ -81,10 +82,12 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
 
 def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
            'val_met': 0, 'val_cut': 0, 'val_bend': 0,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost) * \
         markup_box + cost_work + cost_drive * markup_drive
 
@@ -93,6 +96,8 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
 
 def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                          cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     # Расчёт длины реза
     nh = ((height - 18) // 120) + 1
     nw = ((width - 93) // 120) + 1
@@ -107,10 +112,10 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
                ((20 * 2 + 27 + (width - 121)) * 2 + nw * 15.39) * 2 +
                # Половина лопатки зад
                ((height - 22) + (width - 97)) * \
-               2 + 12.57 + (nh + nw) * 2 * 15.39 + 6 * 15.39
+               2 + 12.57 + (nh + nw) * 2 * 15.39 + 6 * 15.39 +
                # Половина лопатки перед
                ((height - 36) + (width - 97)) * 2 + \
-               12.57 (nh + nw) * 2 * 15.39 + 3 * 15.39 + (21 + 5.5) * 2 * 2
+               12.57 + (nh + nw) * 2 * 15.39 + 3 * 15.39 + (21 + 5.5) * 2 * 2 +
                # Профиль 1
                (163.79 + 18.44 + 5.42 + 43.8 + 24.13 + 10 + (height + 43.06) + 10 + 24.13 + 43.8 + \
                 5.24 + 16.44 + 163.79 + 16.15 + 14.15 * 2 + (height - 29.81) + 14.15 * 2 + 12.57 + 15.7 + \
@@ -161,7 +166,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met) * \
         markup_box + val_cut + val_bend + cost_work + cost_drive * markup_drive
 
@@ -170,6 +175,8 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
 
 def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     # Расчёт длины реза
     len_cut = ((156.13 * 2 + 100.53 + 20.4 + 62.83 + 103.67) * 2 +  # Рычаг 1
                # Рычаг 2
@@ -227,7 +234,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met) * \
         markup_box + val_cut + val_bend + cost_work + cost_drive * markup_drive
 
@@ -236,10 +243,26 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
 
 def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
            'val_met': 0, 'val_cut': 0, 'val_bend': 0,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
+    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost) * \
+        markup_box + cost_work + cost_drive * markup_drive
+
+    return res
+
+
+def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
+                         cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
+    res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
+           'val_met': 0, 'val_cut': 0, 'val_bend': 0,
+           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost) * \
         markup_box + cost_work + cost_drive * markup_drive
 
@@ -248,10 +271,12 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
 
 def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
            'val_met': 0, 'val_cut': 0, 'val_bend': 0,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost) * \
         markup_box + cost_work + cost_drive * markup_drive
 
@@ -260,11 +285,55 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
 
 def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
     res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
            'val_met': 0, 'val_cut': 0, 'val_bend': 0,
            'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'work': cost_work, 'drive': cost_drive}
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost) * \
         markup_box + cost_work + cost_drive * markup_drive
 
     return res
+
+
+def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
+    wb = xl.Workbook()
+    ws = wb.active
+    ws['A1'] = 'Сторона А'
+    ws['A2'] = str(res['width'])
+    ws['B1'] = 'Сторона B'
+    ws['B2'] = str(res['height'])
+    ws['C1'] = 'Квадратура клапана'
+    ws['C2'] = str(res['quad'])
+    ws['D1'] = 'Стоимость металла [м2]'
+    ws['D2'] = str(res['cost_met'])
+    ws['E1'] = 'Стоимость железа за коробку клапана'
+    ws['E2'] = str(res['val_met'])
+    ws['F1'] = 'Стоимость резки'
+    ws['F2'] = str(res['val_cut'])
+    ws['G1'] = 'Стоимость гиба'
+    ws['G1'] = str(res['val_bend'])
+    ws['H1'] = 'Стоимость ваты'
+    ws['H2'] = str(res['vata'])
+    ws['I1'] = 'Стоимость оси(-ей)'
+    ws['I2'] = str(res['axis'])
+    ws['J1'] = 'Стоимость ленты'
+    ws['J2'] = str(res['strip'])
+    ws['K1'] = 'Стоимость крепежа'
+    ws['K2'] = str(res['screw'])
+    ws['L1'] = 'Дополнительные расходы'
+    ws['L2'] = str(res['extra'])
+    ws['M1'] = 'Наценка на корпус клапана'
+    ws['M2'] = str((res['markup_metall'] - 1) * 100) + '%'
+    ws['N1'] = 'Стоимость работ'
+    ws['N2'] = str(res['work'])
+    ws['O1'] = 'Стоимость привода'
+    ws['M2'] = str(res['drive'])
+    ws['P1'] = 'Наценка на привод'
+    ws['M2'] = str((res['markup_drive'] - 1) * 100) + '%'
+    ws['Q1'] = 'Итоговая стоимость'
+    ws['M2'] = str(res['total'])
+
+    wb.save(path + name + '.xlsx')
+    return name + '.xlsx'
