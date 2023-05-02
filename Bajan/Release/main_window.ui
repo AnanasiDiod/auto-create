@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1102</width>
-    <height>844</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -93,16 +93,25 @@ QPushButtonfocus {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
+      <y>50</y>
       <width>1084</width>
-      <height>641</height>
+      <height>1101</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>7</number>
+     </property>
+     <property name="bottomMargin">
+      <number>500</number>
+     </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -203,11 +212,11 @@ QComboBox::down-arrow {
     font-weight: 400;
  }</string>
            </property>
-           <property name="placeholderText">
-            <string/>
-           </property>
            <property name="frame">
             <bool>false</bool>
+           </property>
+           <property name="placeholderText" stdset="0">
+            <string/>
            </property>
            <item>
             <property name="text">
@@ -259,11 +268,11 @@ QComboBox::down-arrow {
            <property name="styleSheet">
             <string notr="true"/>
            </property>
-           <property name="placeholderText">
-            <string/>
-           </property>
            <property name="frame">
             <bool>false</bool>
+           </property>
+           <property name="placeholderText" stdset="0">
+            <string/>
            </property>
            <item>
             <property name="text">
@@ -478,6 +487,15 @@ QComboBox::down-arrow {
         <layout class="QHBoxLayout" name="horizontalLayout_11">
          <item>
           <widget class="QLabel" name="label_10">
+           <property name="font">
+            <font>
+             <family>DejaVu Sans</family>
+             <pointsize>11</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>Сторона А (мм)</string>
            </property>
@@ -922,9 +940,9 @@ padding:0px;</string>
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>720</y>
+      <y>0</y>
       <width>631</width>
-      <height>71</height>
+      <height>51</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -961,7 +979,7 @@ padding:0px;</string>
      <x>0</x>
      <y>0</y>
      <width>1102</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
