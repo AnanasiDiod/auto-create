@@ -10,7 +10,7 @@ class Ui(QtWidgets.QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('main_window.ui', self)
         self.params_list = ['width', 'height', 'cost_met', 'cost_cut', 'cost_bend', 'cost_vata', 'cost_axis',
-                            'cost_strip', 'cost_screw', 'extra_cost', 'markup_box', 'cost_work', 'cost_drive', 'markup_drive']
+                            'cost_strip', 'cost_screw', 'extra_cost', 'markup_box', 'cost_work', 'cost_drive', 'markup_drive', 'additional']
         self.setWindowTitle('Manager calculator')
         self.clear_params.clicked.connect(self.clear)
         self.calc_total.clicked.connect(self.make_total)
@@ -42,33 +42,36 @@ class Ui(QtWidgets.QMainWindow):
         no_nz = self.no_nz.currentText()
         actuator = self.actuator.currentText()
         cut = self.cut.text()
-        extra = self.extra.currentText()
+        additional_key = self.additional_key.currentText()
         height = self.height.text()
         width = self.width.text()
-
+        if additional_key:
+            additional_key_name = ' ' + additional_key
+        else:
+            additional_key_name = ''
         if name_2 == 'ПДВ-1':
             if height and width:
-                return methods['calculate_pdv_1_pr'], f'ПДВ-1 ({limit_fire_resistance})-К-{no_nz} {width}х{height}-{actuator}'
+                return methods['calculate_pdv_1_pr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif height and not width:
-                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-К-{no_nz} ф{height}-{actuator}'
+                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
             elif not height and width:
-                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-К-{no_nz} ф{width}-{actuator}'
+                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2':
             if (limit_fire_resistance == 'EI90') or (limit_fire_resistance == 'EI150'):
-                if extra == 'K':
-                    return methods['calculate_pdv_2_k_ei'], f'ПДВ-2 ({limit_fire_resistance})-К-{no_nz} {width}х{height}-{actuator}'
-                elif extra == '':
-                    return methods['calculate_pdv_2_s_ei'], f'ПДВ-2 ({limit_fire_resistance})-К-{no_nz} {width}х{height}-{actuator}'
+                if additional_key == 'K':
+                    return methods['calculate_pdv_2_k_ei'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                elif additional_key == '':
+                    return methods['calculate_pdv_2_s_ei'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif (limit_fire_resistance == 'E90') or (limit_fire_resistance == 'E150'):
-                if extra == 'K':
-                    return methods['calculate_pdv_2_k'], f'ПДВ-2 ({limit_fire_resistance})-К-{no_nz} {width}х{height}-{actuator}'
-                elif extra == '':
-                    return methods['calculate_pdv_2_s'], f'ПДВ-2 ({limit_fire_resistance})-К-{no_nz} {width}х{height}-{actuator}'
+                if additional_key == 'K':
+                    return methods['calculate_pdv_2_k'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                elif additional_key == '':
+                    return methods['calculate_pdv_2_s'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2-Л':
-            if extra == 'K':
-                return methods['calculate_pdv_2_lk'], f'ПДВ-2 ({limit_fire_resistance})-Л-{no_nz} {width}х{height}-{actuator}'
-            elif extra == '':
-                return methods['calculate_pdv_2_ls'], f'ПДВ-2 ({limit_fire_resistance})-Л-{no_nz} {width}х{height}-{actuator}'
+            if additional_key == 'K':
+                return methods['calculate_pdv_2_lk'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+            elif additional_key == '':
+                return methods['calculate_pdv_2_ls'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         return None, None
 
     def get_params(self):

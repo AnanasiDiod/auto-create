@@ -505,7 +505,7 @@ max-width:128px;</string>
            </spacer>
           </item>
           <item>
-           <widget class="QComboBox" name="extra">
+           <widget class="QComboBox" name="additional_key">
             <item>
              <property name="text">
               <string/>
@@ -938,6 +938,33 @@ max-width:128px;</string>
           </item>
           <item>
            <widget class="QLineEdit" name="markup_drive"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_16">
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Дополнительно</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_23">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="additional"/>
           </item>
          </layout>
         </item>
