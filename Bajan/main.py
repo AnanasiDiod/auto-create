@@ -348,7 +348,7 @@ def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
     ws['Q2'] = 'Итоговая стоимость'
     ws['Q3'] = str(res['total'])
     ws['R2'] = 'Дополнительно'
-    ws['R3'] = str
+    ws['R3'] = str(res['add'])
     print(path + '\\' + name + '.xlsx')
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'
