@@ -1,6 +1,7 @@
 import openpyxl as xl
 import os
 
+
 def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive):
     markup_box = markup_box / 100 + 1
@@ -64,7 +65,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
         area_met_lopatka += (width - 84) * 198
         len_bend += (width - 84.4) * 4
     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
-    val_bend = cost_bend * len_bend
+    val_bend = cost_bend * len_bend / 1000
     val_cut = len_cut * cost_cut / 1000
     area_met_lopatka /= 1000000
     area_met_korp /= 1000000
@@ -157,7 +158,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     area_met_lopatka = (width - 93) * (height - 18) * 2 + (width - 93) * \
         55.68 * 2 + (height - 43) * 55.68 * 2 + (width - 123) * 198.288
     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
-    val_bend = cost_bend * len_bend
+    val_bend = cost_bend * len_bend / 1000
     val_cut = len_cut * cost_cut / 1000
     area_met_lopatka /= 1000000
     area_met_korp /= 1000000
@@ -225,7 +226,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
         36.5 + 100.29 * (width - 98) + 32 * 188.2 * 2 + 140 * 22 * 2
     area_met_lopatka = (height + 1.28) * (width + 7.28)
     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
-    val_bend = cost_bend * len_bend
+    val_bend = cost_bend * len_bend / 1000
     val_cut = len_cut * cost_cut / 1000
     area_met_lopatka /= 1000000
     area_met_korp /= 1000000
