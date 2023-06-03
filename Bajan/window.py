@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFileDialog
 import sys
-from main import *  # calculate_pdv_1_pr, calculate_pdv_1_kr, calculate_pdv_2_s_ei, calculate_pdv_2_s, calculate_pdv_2_k, calculate_pdv_2_ls, calculate_pdv_2_lk, extract_to_excel
+from main import *
 import os
 from datetime import datetime
 
@@ -104,8 +104,6 @@ class Ui(QtWidgets.QMainWindow):
         res = method(**self.get_params())
         res.update({'name': file_name})
         self.positions.append(res)
-        print(res)
-        print(self.positions)
         self.add_log('Добавлено '+ f'"{file_name}"')
 
     def add_log(self, message):
