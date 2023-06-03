@@ -309,55 +309,49 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     return res
 
 
-def extract_to_excel(res=dict(), n=int(), name=str(), path=str()):
+def extract_to_excel(res=list(), name=str(), path=str()):
     wb = xl.Workbook()
     ws = wb.active
-    ws['A1'] = name
-    ws['A2'] = 'Сторона А'
-    ws['A3'] = str(res['width'])
-    ws['B2'] = 'Сторона B'
-    ws['B3'] = str(res['height'])
-    ws['C2'] = 'Квадратура клапана'
-    ws['C3'] = str(res['quad'])
-    ws['D2'] = 'Стоимость металла [м2]'
-    ws['D3'] = str(res['cost_met'])
-    ws['E2'] = 'Стоимость железа за коробку клапана'
-    ws['E3'] = str(res['val_met'])
-    ws['F2'] = 'Стоимость резки'
-    ws['F3'] = str(res['val_cut'])
-    ws['G2'] = 'Стоимость гиба'
-    ws['G3'] = str(res['val_bend'])
-    ws['H2'] = 'Стоимость ваты'
-    ws['H3'] = str(res['vata'])
-    ws['I2'] = 'Стоимость оси(-ей)'
-    ws['I3'] = str(res['axis'])
-    ws['J2'] = 'Стоимость ленты'
-    ws['J3'] = str(res['strip'])
-    ws['K2'] = 'Стоимость крепежа'
-    ws['K3'] = str(res['screw'])
-    ws['L2'] = 'Дополнительные расходы на металл'
-    ws['L3'] = str(round((res['extra'] - 1) * 100, 2)) + '%'
-    ws['M2'] = 'Наценка на корпус клапана'
-    ws['M3'] = str(round((res['markup_metall'] - 1) * 100, 2)) + '%'
-    ws['N2'] = 'Стоимость работ'
-    ws['N3'] = str(res['work'])
-    ws['O2'] = 'Стоимость привода'
-    ws['O3'] = str(res['drive'])
-    ws['P2'] = 'Наценка на привод'
-    ws['P3'] = str(round((res['markup_drive'] - 1) * 100, 2)) + '%'
-    ws['Q2'] = 'Итоговая стоимость'
-    ws['Q3'] = str(res['total'])
-    ws['R2'] = 'Дополнительно'
-    ws['R3'] = str(res['add'])
-    print(path + '\\' + name + '.xlsx')
+    for i in range(len(res)):
+        ws['A' + str(1 + i * 3)] = res['name']
+        ws['A' + str(2 + i * 3)] = 'Сторона А'
+        ws['A' + str(3 + i * 3)] = str(res['width'])
+        ws['B' + str(2 + i * 3)] = 'Сторона B'
+        ws['B' + str(3 + i * 3)] = str(res['height'])
+        ws['C' + str(2 + i * 3)] = 'Квадратура клапана'
+        ws['C' + str(3 + i * 3)] = str(res['quad'])
+        ws['D' + str(2 + i * 3)] = 'Стоимость металла [м2]'
+        ws['D' + str(3 + i * 3)] = str(res['cost_met'])
+        ws['E' + str(2 + i * 3)] = 'Стоимость железа за коробку клапана'
+        ws['E' + str(3 + i * 3)] = str(res['val_met'])
+        ws['F' + str(2 + i * 3)] = 'Стоимость резки'
+        ws['F' + str(3 + i * 3)] = str(res['val_cut'])
+        ws['G' + str(2 + i * 3)] = 'Стоимость гиба'
+        ws['G' + str(3 + i * 3)] = str(res['val_bend'])
+        ws['H' + str(2 + i * 3)] = 'Стоимость ваты'
+        ws['H' + str(3 + i * 3)] = str(res['vata'])
+        ws['I' + str(2 + i * 3)] = 'Стоимость оси(-ей)'
+        ws['I' + str(3 + i * 3)] = str(res['axis'])
+        ws['J' + str(2 + i * 3)] = 'Стоимость ленты'
+        ws['J' + str(3 + i * 3)] = str(res['strip'])
+        ws['K' + str(2 + i * 3)] = 'Стоимость крепежа'
+        ws['K' + str(3 + i * 3)] = str(res['screw'])
+        ws['L' + str(2 + i * 3)] = 'Дополнительные расходы на металл'
+        ws['L' + str(3 + i * 3)] = str(round((res['extra'] - 1) * 100, 2)) + '%'
+        ws['M' + str(2 + i * 3)] = 'Наценка на корпус клапана'
+        ws['M' + str(3 + i * 3)
+           ] = str(round((res['markup_metall'] - 1) * 100, 2)) + '%'
+        ws['N' + str(2 + i * 3)] = 'Стоимость работ'
+        ws['N' + str(3 + i * 3)] = str(res['work'])
+        ws['O' + str(2 + i * 3)] = 'Стоимость привода'
+        ws['O' + str(3 + i * 3)] = str(res['drive'])
+        ws['P' + str(2 + i * 3)] = 'Наценка на привод'
+        ws['P' + str(3 + i * 3)
+           ] = str(round((res['markup_drive'] - 1) * 100, 2)) + '%'
+        ws['Q' + str(2 + i * 3)] = 'Итоговая стоимость'
+        ws['Q' + str(3 + i * 3)] = str(res['total'])
+        ws['R' + str(2 + i * 3)] = 'Дополнительно'
+        ws['R' + str(3 + i * 3)] = str(res['add'])
+        print(path + '\\' + res['name'] + '.xlsx')
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'
-
-
-# res = {'width': 0, 'height': 1, 'quad': 2, 'cost_met': 3,
-#        'val_met': 4, 'val_cut': 5, 'val_bend': 6,
-#        'vata': 7, 'axis': 8, 'strip': 9, 'screw': 10,
-#        'extra': 11, 'markup_metall': 1.2, 'work': 13, 'drive': 14, 'markup_drive': 1.5}
-# res['total'] = 16
-
-# extract_to_excel(res, 1, 'jopa', 'D:\Загрузки\Telegram Desktop')
