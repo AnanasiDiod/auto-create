@@ -313,45 +313,45 @@ def extract_to_excel(res=list(), name=str(), path=str()):
     wb = xl.Workbook()
     ws = wb.active
     for i in range(len(res)):
-        ws['A' + str(1 + i * 3)] = res['name']
+        ws['A' + str(1 + i * 3)] = res[i]['name']
         ws['A' + str(2 + i * 3)] = 'Сторона А'
-        ws['A' + str(3 + i * 3)] = str(res['width'])
+        ws['A' + str(3 + i * 3)] = str(res[i]['width'])
         ws['B' + str(2 + i * 3)] = 'Сторона B'
-        ws['B' + str(3 + i * 3)] = str(res['height'])
+        ws['B' + str(3 + i * 3)] = str(res[i]['height'])
         ws['C' + str(2 + i * 3)] = 'Квадратура клапана'
-        ws['C' + str(3 + i * 3)] = str(res['quad'])
+        ws['C' + str(3 + i * 3)] = str(res[i]['quad'])
         ws['D' + str(2 + i * 3)] = 'Стоимость металла [м2]'
-        ws['D' + str(3 + i * 3)] = str(res['cost_met'])
+        ws['D' + str(3 + i * 3)] = str(res[i]['cost_met'])
         ws['E' + str(2 + i * 3)] = 'Стоимость железа за коробку клапана'
-        ws['E' + str(3 + i * 3)] = str(res['val_met'])
+        ws['E' + str(3 + i * 3)] = str(res[i]['val_met'])
         ws['F' + str(2 + i * 3)] = 'Стоимость резки'
-        ws['F' + str(3 + i * 3)] = str(res['val_cut'])
+        ws['F' + str(3 + i * 3)] = str(res[i]['val_cut'])
         ws['G' + str(2 + i * 3)] = 'Стоимость гиба'
-        ws['G' + str(3 + i * 3)] = str(res['val_bend'])
+        ws['G' + str(3 + i * 3)] = str(res[i]['val_bend'])
         ws['H' + str(2 + i * 3)] = 'Стоимость ваты'
-        ws['H' + str(3 + i * 3)] = str(res['vata'])
+        ws['H' + str(3 + i * 3)] = str(res[i]['vata'])
         ws['I' + str(2 + i * 3)] = 'Стоимость оси(-ей)'
-        ws['I' + str(3 + i * 3)] = str(res['axis'])
+        ws['I' + str(3 + i * 3)] = str(res[i]['axis'])
         ws['J' + str(2 + i * 3)] = 'Стоимость ленты'
-        ws['J' + str(3 + i * 3)] = str(res['strip'])
+        ws['J' + str(3 + i * 3)] = str(res[i]['strip'])
         ws['K' + str(2 + i * 3)] = 'Стоимость крепежа'
-        ws['K' + str(3 + i * 3)] = str(res['screw'])
+        ws['K' + str(3 + i * 3)] = str(res[i]['screw'])
         ws['L' + str(2 + i * 3)] = 'Дополнительные расходы на металл'
-        ws['L' + str(3 + i * 3)] = str(round((res['extra'] - 1) * 100, 2)) + '%'
+        ws['L' + str(3 + i * 3)] = str(round((res[i]['extra'] - 1) * 100, 2)) + '%'
         ws['M' + str(2 + i * 3)] = 'Наценка на корпус клапана'
         ws['M' + str(3 + i * 3)
-           ] = str(round((res['markup_metall'] - 1) * 100, 2)) + '%'
+           ] = str(round((res[i]['markup_metall'] - 1) * 100, 2)) + '%'
         ws['N' + str(2 + i * 3)] = 'Стоимость работ'
-        ws['N' + str(3 + i * 3)] = str(res['work'])
+        ws['N' + str(3 + i * 3)] = str(res[i]['work'])
         ws['O' + str(2 + i * 3)] = 'Стоимость привода'
-        ws['O' + str(3 + i * 3)] = str(res['drive'])
+        ws['O' + str(3 + i * 3)] = str(res[i]['drive'])
         ws['P' + str(2 + i * 3)] = 'Наценка на привод'
         ws['P' + str(3 + i * 3)
-           ] = str(round((res['markup_drive'] - 1) * 100, 2)) + '%'
+           ] = str(round((res[i]['markup_drive'] - 1) * 100, 2)) + '%'
         ws['Q' + str(2 + i * 3)] = 'Итоговая стоимость'
-        ws['Q' + str(3 + i * 3)] = str(res['total'])
+        ws['Q' + str(3 + i * 3)] = str(res[i]['total'])
         ws['R' + str(2 + i * 3)] = 'Дополнительно'
-        ws['R' + str(3 + i * 3)] = str(res['add'])
-        print(path + '\\' + res['name'] + '.xlsx')
+        ws['R' + str(3 + i * 3)] = str(res[i]['add'])
+        #print(path + '\\' + res[i]['name'] + '.xlsx')
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'

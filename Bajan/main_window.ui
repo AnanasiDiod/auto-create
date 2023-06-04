@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1068</width>
-    <height>698</height>
+    <height>778</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -531,17 +531,11 @@ max-width:128px;</string>
          </layout>
         </item>
         <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+         <widget class="QListWidget" name="log_area">
+          <property name="wordWrap">
+           <bool>true</bool>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+         </widget>
         </item>
        </layout>
       </item>
@@ -1054,6 +1048,13 @@ max-width:128px;</string>
        <widget class="QPushButton" name="calc_total">
         <property name="text">
          <string>Расчёт</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="add_position_btn">
+        <property name="text">
+         <string>Добавить позицию</string>
         </property>
        </widget>
       </item>

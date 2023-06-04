@@ -1,8 +1,9 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QFileDialog
 import sys
-from main import *  # calculate_pdv_1_pr, calculate_pdv_1_kr, calculate_pdv_2_s_ei, calculate_pdv_2_s, calculate_pdv_2_k, calculate_pdv_2_ls, calculate_pdv_2_lk, extract_to_excel
+from main import *
 import os
+from datetime import datetime
 
 
 class Ui(QtWidgets.QMainWindow):
@@ -11,21 +12,23 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('main_window.ui', self)
         self.params_list = ['width', 'height', 'cost_met', 'cost_cut', 'cost_bend', 'cost_vata', 'cost_axis',
                             'cost_strip', 'cost_screw', 'extra_cost', 'markup_box', 'cost_work', 'cost_drive', 'markup_drive', 'additional']
+        self.positions = []
         self.setWindowTitle('Manager calculator')
         self.clear_params.clicked.connect(self.clear)
         self.calc_total.clicked.connect(self.make_total)
         self.make_excel.clicked.connect(self.save_project)
+        self.add_position_btn.clicked.connect(self.add_position)
 
         self.show()
 
     def save_project(self):
-        method, file_name = self.choose_method()
         dialog = QFileDialog(self)
-        name = dialog.getSaveFileName(self, 'Save File', file_name)[0]
+        name = dialog.getSaveFileName(self, 'Save File')[0]
         path = os.path.split(name)
-        res = method(**self.get_params())
-        extract_to_excel(res=res, name=path[1], path=path[0])
-
+        extract_to_excel(res=self.positions, name=path[1], path=path[0])
+        self.add_log(f'Сохранено в файл: "{name}.xls"')
+        self.positions = []
+        self.add_log('Все позиции удалены')
     def choose_method(self):
         methods = {'calculate_pdv_1_pr': calculate_pdv_1_pr,
                    'calculate_pdv_1_kr': calculate_pdv_1_kr,
@@ -51,27 +54,27 @@ class Ui(QtWidgets.QMainWindow):
             additional_key_name = ''
         if name_2 == 'ПДВ-1':
             if height and width:
-                return methods['calculate_pdv_1_pr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                return methods['calculate_pdv_1_pr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif height and not width:
-                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
+                return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
             elif not height and width:
-                return methods['calculate_pdv_1_kr'], f'ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
+                return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2':
             if (limit_fire_resistance == 'EI90') or (limit_fire_resistance == 'EI150'):
                 if additional_key == 'K':
-                    return methods['calculate_pdv_2_k_ei'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                    return methods['calculate_pdv_2_k_ei'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
                 elif additional_key == '':
-                    return methods['calculate_pdv_2_s_ei'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                    return methods['calculate_pdv_2_s_ei'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif (limit_fire_resistance == 'E90') or (limit_fire_resistance == 'E150'):
                 if additional_key == 'K':
-                    return methods['calculate_pdv_2_k'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                    return methods['calculate_pdv_2_k'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
                 elif additional_key == '':
-                    return methods['calculate_pdv_2_s'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                    return methods['calculate_pdv_2_s'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2-Л':
             if additional_key == 'K':
-                return methods['calculate_pdv_2_lk'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                return methods['calculate_pdv_2_lk'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif additional_key == '':
-                return methods['calculate_pdv_2_ls'], f'ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                return methods['calculate_pdv_2_ls'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         return None, None
 
     def get_params(self):
@@ -96,6 +99,17 @@ class Ui(QtWidgets.QMainWindow):
         res = method(**self.get_params())
         self.total.setText(str(float('{:.2f}'.format(res['total']))))
 
+    def add_position(self):
+        method, file_name = self.choose_method()
+        res = method(**self.get_params())
+        res.update({'name': file_name})
+        self.positions.append(res)
+        self.add_log('Добавлено '+ f'"{file_name}"')
+
+    def add_log(self, message):
+        now = datetime.now()
+        current_time = now.strftime("%H:%M:%S")
+        self.log_area.addItem(f'[{current_time}] ' + message)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
