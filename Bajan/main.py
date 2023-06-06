@@ -83,6 +83,8 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
 
+    print('pdv_1_pr')
+
     return res
 
 
@@ -130,6 +132,9 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
+    
+    print('pdv_1_kr')
+
     
     return res
 
@@ -213,6 +218,9 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
+    
+    print('pdv_2_s_ei')
+
     return res
 
 
@@ -284,6 +292,8 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
+  
+    print('pdv_2_s')
 
     return res
 
@@ -299,6 +309,8 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
            'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw) * \
         markup_box + cost_work + cost_drive * markup_drive + additional
+  
+    print('pdv_2_k')
 
     return res
 
@@ -314,6 +326,8 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
            'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
     res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw) * \
         markup_box + cost_work + cost_drive * markup_drive + additional
+    
+    print('pdv_2_k_ei')
 
     return res
 
@@ -370,6 +384,8 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
 
+    print('pdv_2_lk')
+
     return res
 
 
@@ -422,6 +438,8 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
+    
+    print('pdv_2_ls')
     
     return res
 
