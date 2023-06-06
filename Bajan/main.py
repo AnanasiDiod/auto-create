@@ -1,5 +1,6 @@
 import openpyxl as xl
 import os
+from math import ceil
 
 
 def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
@@ -60,6 +61,8 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     area_met_lopatka = (height - 12) * (width - 54) * 2 + \
         (55.69 * 2 + 0) * height + (55.69 * 2 + 0) * width - \
         (18 * 55.69 * 2 + 54 * 55.69 * 2) + 50 * 55.68
+    len_strip = ((height - 18) + (width - 54.4)) * 2 / 1000
+    area_lopatka = (width - 54.4) * (height - 18) / 1000000
     # Учёт наличия ребра
     if not(width < 500 and height < 500 or height < 200):
         len_cut += 548.58 + width * 2 - 84.4 * 2 + 15.39 * 9
@@ -74,9 +77,9 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
 
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
            'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
 
@@ -88,13 +91,46 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
-    res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
-           'val_met': 0, 'val_cut': 0, 'val_bend': 0,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw) * \
-        markup_box + cost_work + cost_drive * markup_drive + additional
+    # Расчёт длины реза. Каждая строка - отдельная деталь
+    if int(height) > int(width):
+        width = height
+    else:
+        height = width
+    len_cut = ((3.141592 * (width - 1) + 10.3 ) * 2 + 400 * 2 + 192.58 + # обечайка
+            1076.346 + 37.699 + # крышка привода
+            (3.141592 * (width - 8) + (12 + 1.3) * 2 * int(width * 3 / 100 + 3) + 15.4 * 9 + 20.4 * 2) * 2 + #лопатка
+            1263.8 + # площадка
+            306.42 + # поддержка оси
+            367.56 + # поддержка оси квадрат
+            385.09 + # поддержка оси центр
+            (width - 50 + 56.7) * 2 + 15.4 * 6 + 49.2 + # поддержка оси центр 2
+            ((20 +  3.141592 * (width - 10) / 2) * 2 + 22.07 * int(width * 3 / 100 + 3)) * 2 + # ребро
+            150.2) # уголок
+    len_bend = (3.141592 * (width - 10) * 2 + # ребро
+                15 + # уголок
+                96.2 * 4 + 109.98 + # крышка привода
+                (172 + 110 + 30 + 16.2 * 2) * 2 + # площадка
+                20* 4 + 200 * 2 + 15 + (width - 50) * 2) # всё остальное
+    # Расчёт площади металла
+    area_met_korp = (3.141592 * (width - 1) + 10.3 )* 400 + 314.48 * 197.64 + 152.88 * 250.56 + 15 * 47.64
+    area_met_lopatka = 2 * 3.141592 * ((width/2 - 4) ** 2) + 3.141592 * (width - 10) * 36.37 * 2 + 56.74 * 40 * 2 + 56.74 * 200 + 56.74 * (width - 50)
+    area_lopatka = 3.141592 * ((width/2 - 4) ** 2) / 1000000
+    len_strip = 3.141592 * (width - 8) / 1000
+     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
+    val_bend = cost_bend * len_bend / 1000
+    val_cut = len_cut * cost_cut / 1000
+    area_met_lopatka /= 1000000
+    area_met_korp /= 1000000
+    val_met = (area_met_lopatka + area_met_korp) * cost_met
 
+    res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
+           'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+        markup_box + val_cut + val_bend + cost_work + \
+        cost_drive * markup_drive + additional
+    
     return res
 
 
@@ -161,6 +197,8 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
         30 * 99.5 + 32 * 188 + 22 * 130
     area_met_lopatka = (width - 93) * (height - 18) * 2 + (width - 93) * \
         55.68 * 2 + (height - 43) * 55.68 * 2 + (width - 123) * 198.288
+    area_lopatka = (height - 43) * (width - 93) / 1000000
+    len_strip = ((height - 43) + (width - 93)) * 2 / 1000
     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
     val_bend = cost_bend * len_bend / 1000
     val_cut = len_cut * cost_cut / 1000
@@ -170,12 +208,11 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
 
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
            'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
-
     return res
 
 
@@ -231,6 +268,8 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
         30 + (height - 78) * 36.5 * 2 + (width - 93) * \
         36.5 + 100.29 * (width - 98) + 32 * 188.2 * 2 + 140 * 22 * 2
     area_met_lopatka = (height + 1.28) * (width + 7.28)
+    area_lopatka = (width - 49.74) * (height - 35.74) / 1000000
+    len_strip = ((width - 49.74) + (height - 35.74)) * 2 / 1000
     # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
     val_bend = cost_bend * len_bend / 1000
     val_cut = len_cut * cost_cut / 1000
@@ -240,9 +279,9 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
 
     res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
            'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
            'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
         markup_box + val_cut + val_bend + cost_work + \
         cost_drive * markup_drive + additional
 
@@ -279,33 +318,111 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     return res
 
 
-def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
-                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional):
-    markup_box = markup_box / 100 + 1
-    markup_drive = markup_drive / 100 + 1
-    extra_cost = extra_cost / 100 + 1
-    res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
-           'val_met': 0, 'val_cut': 0, 'val_bend': 0,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw) * \
-        markup_box + cost_work + cost_drive * markup_drive + additional
-
-    return res
-
-
 def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional):
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
-    res = {'width': width, 'height': height, 'quad': 0, 'cost_met': cost_met,
-           'val_met': 0, 'val_cut': 0, 'val_bend': 0,
-           'vata': cost_vata, 'axis': cost_axis, 'strip': cost_strip, 'screw': cost_screw,
-           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
-    res['total'] = (cost_vata + cost_axis + cost_strip + cost_screw) * \
-        markup_box + cost_work + cost_drive * markup_drive + additional
+    np = int(height / 220) + 1 # количество лопаток
+    hp = (height - 7.5 * (np + 1)) / np # высота лопатки
+    nw = ceil((width - 114.4)/125) + 1 # количество горизонтальных отверстий в лопатках
+    # Расчёт длины реза. Каждая строка - отдельная деталь
+    len_cut = (((height - 5 + 102.96) * 2 + 15.4 * 4) * 2 + 34.56 * (np * 2 - 1) + 56.55 + # Боковина + под привод
+                ((67.4 + 15.4 * 2 + hp - 36) * 2 + 35.5) * 2 * np + 13.7 + # боковина лопатки + под привод
+                ((67.4 + nw * 15.4 + width - 82.4) * 2) * 2 * np + # боковина лопатки горизонтальная
+                1114.03 + # крышка привода
+                1014.23 + # площадка
+                ((width - 60.4 + hp - 1) * 2 + 18.85 + (4 + nw * 2) * 15.4) * np + 2 * 15.4 + # половина лопатки + под привод
+                ((116.05 + hp - 60.215 + width - 60.4 + 19.48) * 2 + (4 + nw * 2) * 15.4) * np + 2 * 15.4 + # половина лопатки с отгибами + под привод
+                (960.184 + 2 * height) * 2 + 56.55 + 4 * 20.42 + # профиль 1 + под привод
+                (1701.29 + width * 2) * 2 - 1.32 + # профиль 2 верх и низ
+                (25.46 + width * 2) * 2 + # уголок верх низ
+                (-300.17 + height * 2 + 20.42 * (np - 2)) * 2 + # ребро
+                315.7) # поддержка оси
+    
+    len_bend = ((width - 60) * 2 + # уголок
+                (height - 5) * 4 * 2 + # боковина
+                hp * 2 * 2 * np + # боковина лопатки
+                (width - 54.4) * 2 * 2 * np + # боковина лопатки горизонтальная
+                494.8 + # крышка привода
+                (212.4 + 110 * 2) * 2 + # площадка
+                57.215 * 2 * np + # половина лопатки с отгибами
+                (212.4 * 2 + (height - 7.6) * 2 *2) * 2 + # профиль 1
+                (width - 1) * 2 * 2 * 2 + # профиль 2
+                100) # поддержка оси
+    # Расчёт площади металла
+    area_met_korp = 102.98 * (height - 5) * 2 + 314.48 * 197.64 + 290.56 * 152.88 + (height + 55.28) * 290.56 * 2 + 288.96 * (width + 56) * 2 + 27.64 * (width - 38)  + 22 * (np * hp + 10) * 2
+    area_met_lopatka = 55.69 * np * (hp + width - 54.4) * 2 + (width - 54.4 + width + 32.48) * hp * np + 55.68 * 50
+    area_lopatka = np * hp * (width - 54.4) / 1000000
+    len_strip = (height - 5 + np * (width - 54.4)) * 2 / 1000
+    # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
+    val_bend = cost_bend * len_bend / 1000
+    val_cut = len_cut * cost_cut / 1000
+    area_met_lopatka /= 1000000
+    area_met_korp /= 1000000
+    val_met = (area_met_lopatka + area_met_korp) * cost_met
 
+    res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
+           'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+        markup_box + val_cut + val_bend + cost_work + \
+        cost_drive * markup_drive + additional
+
+    return res
+
+
+def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis,
+                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional):
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
+    extra_cost = extra_cost / 100 + 1
+    np = int(height / 220.8) + 1 # количество лопаток
+    hp = (height - 7.5 * (np + 1)) / np # высота лопатки
+    nw = ceil((width - 273.4)/125) + 1 # количество горизонтальных отверстий в лопатках
+    nh = ceil((height - 42.443)/125) + 1
+    # Расчёт длины реза. Каждая строка - отдельная деталь
+    len_cut = ((319.41 + height * 2 - 34.56 + (np - 2) * 34.56) + 22 + 18.85 * 2 + # Боковина + под привод
+               (-287.04 + width * 2 + (nw - 2) * 2 * 15.4) * 2 + # Боковина лопатки горизонтальная
+               (147.92 + hp * 2) * 2 * np  + 13.7 + # Боковина лопатки + под привод
+               322.14 + # Поддержка оси
+               ((hp - 1 + width - 263.4) * 2 + 8 * 15.4 + (nw - 2) * 2 * 15.4) * np + 2 * 15.4 + # Половина лопатки + под привод
+               (323.22 + width * 2 + hp * 2 + (nw - 2) * 2 * 15.4) * np + 2 * 15.4 + # Половина лопатки с отгибами + под привод
+                (894.15 + height * 2) * 2 + (nh + 4) * 15.4 + # Профиль 1 + под привод
+                (755.89 + width * 2) * 2 + 138.227 + # Профиль 2 верх и низ
+                969.82 + height * 2 + nh * 15.4 + # Стенка 
+                (-292.54 + width * 2) * 2 + # Уголок верх низ
+                (-300.17 + height * 2 + 20.42 * (np - 2)) * 2) # ребро
+    len_bend = ((width - 197) * 2 + # уголок
+                (height - 8.6) * 4 * 2 + # боковина
+                hp * 2 * 2 * np + # боковина лопатки
+                (width - 213.4) * 2 * 2 * np + # боковина лопатки горизонтальная
+                57.215 * 2 * np + # половина лопатки с отгибами
+                (213.6 * 2 + (height - 9.6) * 2) * 2 + # профиль 1
+                (width - 5) * 2 * 2 + # профиль 2
+                100 + # поддержка оси
+                (height - 9.6) * 3 + 174.16 * 2) # Стенка
+    # Расчёт площади металла
+    area_met_korp = 102.96 * (height - 8.6) * 2 + 276.18 * (height + 83.4) * 2 + 282.28 * (width + 51) * 2 + 333.72 * (height + 28.68) + 27.64 * (width - 197) * 2 + 22 * (np * hp + 10) * 2
+    area_met_lopatka = 55.69 * np * (hp + width - 213.4) * 2 + (width - 213.4 + width + 126.6) * hp * np + 55.68 * 50
+    area_lopatka = np * hp * (width - 213.4) / 1000000
+    len_strip = (height - 8.6 + np * (width - 213.4)) * 2 / 1000
+    # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
+    val_bend = cost_bend * len_bend / 1000
+    val_cut = len_cut * cost_cut / 1000
+    area_met_lopatka /= 1000000
+    area_met_korp /= 1000000
+    val_met = (area_met_lopatka + area_met_korp) * cost_met
+
+    res = {'width': width, 'height': height, 'quad': area_met_lopatka + area_met_korp, 'cost_met': cost_met,
+           'val_met': val_met, 'val_cut': val_cut, 'val_bend': val_bend,
+           'vata': cost_vata * area_lopatka, 'axis': cost_axis, 'strip': cost_strip * len_strip, 'screw': cost_screw,
+           'extra': extra_cost, 'markup_metall': markup_box, 'work': cost_work, 'drive': cost_drive, 'markup_drive': markup_drive, 'add': additional}
+    res['total'] = (cost_vata * area_lopatka + cost_axis + cost_strip * len_strip + cost_screw + extra_cost + val_met * extra_cost) * \
+        markup_box + val_cut + val_bend + cost_work + \
+        cost_drive * markup_drive + additional
+    
     return res
 
 
@@ -337,7 +454,8 @@ def extract_to_excel(res=list(), name=str(), path=str()):
         ws['K' + str(2 + i * 3)] = 'Стоимость крепежа'
         ws['K' + str(3 + i * 3)] = str(res[i]['screw'])
         ws['L' + str(2 + i * 3)] = 'Дополнительные расходы на металл'
-        ws['L' + str(3 + i * 3)] = str(round((res[i]['extra'] - 1) * 100, 2)) + '%'
+        ws['L' + str(3 + i * 3)] = str(round((res[i]
+                                              ['extra'] - 1) * 100, 2)) + '%'
         ws['M' + str(2 + i * 3)] = 'Наценка на корпус клапана'
         ws['M' + str(3 + i * 3)
            ] = str(round((res[i]['markup_metall'] - 1) * 100, 2)) + '%'
