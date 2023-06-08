@@ -292,39 +292,7 @@ padding:0px;</string>
                    <enum>Qt::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"> QComboBox{
-	font: 11pt &quot;DejaVu Sans&quot;;
-    color: #111827;
-    background-color: #FFFFFF;   
-    padding: 0px 5px 0px 5px;
-    border-radius: 4px;
-    border: 1px solid black;
-    height: 30px;
-    font-weight: 400;
-}
-QComboBox::drop-down {
-	border: 0px;
-}
-QComboBox::down-arrow {
-	image: url(&quot;/home/nikita/PycharmProjects/tc/drop-down-arrow.png&quot;); 
-	width:15px;
-	height:15px;
-	margin-right: 5px;
-}
-
- QComboBox QAbstractItemView {
-	margin:0px;
-    padding:0px;
-    border: 0px solid darkgray;
-    selection-background-color: lightgray;
-	font: 11pt &quot;DejaVu Sans&quot;;
-    color: #111827;
-    background-color: #FFFFFF;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid black;
-    font-weight: 400;
- }</string>
+                   <string notr="true"/>
                   </property>
                   <property name="placeholderText">
                    <string/>
@@ -345,6 +313,44 @@ QComboBox::down-arrow {
                   <item>
                    <property name="text">
                     <string>ПДВ-2-Л</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Исполнение</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_24">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="performance">
+                  <item>
+                   <property name="text">
+                    <string>К</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>С</string>
                    </property>
                   </item>
                  </widget>
@@ -572,11 +578,6 @@ max-width:128px;</string>
                   <item>
                    <property name="text">
                     <string>ТРУ</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>K</string>
                    </property>
                   </item>
                   <item>

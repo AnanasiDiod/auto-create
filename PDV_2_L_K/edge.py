@@ -25,8 +25,9 @@ def main(width, heigh, quantity, np, sp, path=str()):
     p.go_init()
 
     p.set_xy(11, 0)
-    for i in range(np):
-        p.circle(0, -i * sp, 6.5 / 2)
+    p.circle(0, 0, 6.5 / 2)
+    for i in range(np-1):
+        p.circle(0, -sp, 6.5 / 2)
 
     doc.saveas(path+"Ребро "+str(width)+'x'+str(heigh) +
                ' 2мм ' + str(quantity * 2)+'шт.dxf')

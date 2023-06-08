@@ -18,7 +18,6 @@ class Ui(QtWidgets.QMainWindow):
         self.calc_total.clicked.connect(self.make_total)
         self.make_excel.clicked.connect(self.save_project)
         self.add_position_btn.clicked.connect(self.add_position)
-
         self.show()
 
     def save_project(self):
@@ -29,6 +28,7 @@ class Ui(QtWidgets.QMainWindow):
         self.add_log(f'Сохранено в файл: "{name}.xls"')
         self.positions = []
         self.add_log('Все позиции удалены')
+
     def choose_method(self):
         methods = {'calculate_pdv_1_pr': calculate_pdv_1_pr,
                    'calculate_pdv_1_kr': calculate_pdv_1_kr,
@@ -46,6 +46,7 @@ class Ui(QtWidgets.QMainWindow):
         actuator = self.actuator.currentText()
         cut = self.cut.text()
         additional_key = self.additional_key.currentText()
+        performance = self.performance.currentText()
         height = self.height.text()
         width = self.width.text()
         if additional_key:
@@ -61,20 +62,21 @@ class Ui(QtWidgets.QMainWindow):
                 return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2':
             if (limit_fire_resistance == 'EI90') or (limit_fire_resistance == 'EI150'):
-                if additional_key == 'K':
-                    return methods['calculate_pdv_2_k_ei'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
-                elif additional_key == '':
-                    return methods['calculate_pdv_2_s_ei'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                if performance == 'К':
+                    return methods['calculate_pdv_2_k_ei'], f'Клапан противопожарный ПДВ-2-К ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                elif performance == 'С':
+                    return methods['calculate_pdv_2_s_ei'], f'Клапан противопожарный ПДВ-2-С ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
             elif (limit_fire_resistance == 'E90') or (limit_fire_resistance == 'E150'):
-                if additional_key == 'K':
-                    return methods['calculate_pdv_2_k'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
-                elif additional_key == '':
-                    return methods['calculate_pdv_2_s'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                if performance == 'К':
+                    return methods['calculate_pdv_2_k'], f'Клапан противопожарный ПДВ-2-К ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+                elif performance == 'С':
+                    return methods['calculate_pdv_2_s'], f'Клапан противопожарный ПДВ-2-С ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2-Л':
-            if additional_key == 'K':
-                return methods['calculate_pdv_2_lk'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
-            elif additional_key == '':
-                return methods['calculate_pdv_2_ls'], f'Клапан противопожарный ПДВ-2 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+            if performance == 'К':
+                return methods['calculate_pdv_2_lk'], f'Клапан противопожарный ПДВ-2-Л-К ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+            elif performance == 'С':
+                return methods['calculate_pdv_2_ls'], f'Клапан противопожарный ПДВ-2-Л-С ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+        self.add_log('Недопустимые параметры')
         return None, None
 
     def get_params(self):
