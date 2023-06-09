@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def sidewall(width, heigh, quantity, np, sp, actuator, path=str()):
+def sidewall(width, heigh, quantity, np, sp, actuator, Belimo, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -10,17 +10,14 @@ def sidewall(width, heigh, quantity, np, sp, actuator, path=str()):
     p.msp = msp
 
     p.go_line(102.96, 0)
-    p.go_line(0, - heigh + 5)
+    p.go_line(0, - heigh + 8.6)
     p.go_line(-102.96, 0)
     p.go_init()
 
     p.circle(7.5, -18, 4.9 / 2)
     p.circle(87.96, 0, 4.9 / 2)
-
-    p.circle(0, -heigh + 41, 4.9 / 2)
-    p.circle(0.7, 104.07, 6 / 2)  # special
-    p.circle(-89.36, 0, 6 / 2)  # special
-    p.circle(0.7, -104.07, 4.9 / 2)
+    p.circle(0, -heigh + 44.6, 4.9 / 2)
+    p.circle(-87.96, 0, 4.9 / 2)
 
     d = 11
     if actuator:
@@ -29,8 +26,12 @@ def sidewall(width, heigh, quantity, np, sp, actuator, path=str()):
 
     for i in range(np - 1):
         p.circle(0, sp, 11 / 2)
-
+    
     if actuator:
+        if Belimo:
+            p.set_xy(0, 0)
+            p.circle(6.8, -heigh + 130.67, 6 / 2)
+            p.circle(89.36, 0, 6 / 2)
         doc.saveas(path+"Боковина под привод "+str(width)+'x'+str(heigh) +
                    ' 0,8мм ' + str(quantity)+'шт.dxf')
     else:
@@ -38,6 +39,6 @@ def sidewall(width, heigh, quantity, np, sp, actuator, path=str()):
                    ' 0,8мм ' + str(quantity)+'шт.dxf')
 
 
-def main(width, heigh, quantity, np, sp, path=str()):
-    sidewall(width, heigh, quantity, np, sp, True, path)
-    sidewall(width, heigh, quantity, np, sp, False, path)
+def main(width, heigh, quantity, np, sp, Belimo, path=str()):
+    sidewall(width, heigh, quantity, np, sp, True, Belimo, path)
+    sidewall(width, heigh, quantity, np, sp, False, Belimo, path)

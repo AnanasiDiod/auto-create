@@ -1,8 +1,6 @@
 import os
-import area
 import axis_support
 import corner_top_bottom
-import cover_of_actuator
 import edge
 import half_of_spacula_with_fold
 import half_of_spacula
@@ -13,7 +11,6 @@ import sidewall_of_spacula_hor
 import sidewall
 import profile_1_for_actuator
 import wall
-import sidewall_for_actuator
 from math import ceil
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
@@ -28,7 +25,11 @@ def main():
     width = int(input('Ширина клапана в мм: '))
     heigh = int(input('Высота клапана в мм: '))
     quantity = int(input('Количество в резке(шт): '))
-    path = g_path + "/Клапан противопожарный ПДВ-2 канальный лифтовый " + str(
+    Bel = input('Если привод Китай, жмите Enter, если Белимо, введите любые символы: ')
+    Belimo = False
+    if Bel != '':
+        Belimo = True
+    path = g_path + "/Клапан противопожарный ПДВ-2 стеновой лифтовый " + str(
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
     try:
         try:
@@ -55,6 +56,8 @@ def main():
             print('Все папки созданы успешно')
         # количество горизонтальных отверстий в лопатках
         nw = ceil((width - 114.4)/125) + 1
+        # количество вертикальных отверстий в профиле 1 и в стенке
+        nh = int((width - 42.44)/125) + 1
         # количество лопаток
         np = int(heigh / 220) + 1
         # высота лопатки
@@ -69,16 +72,15 @@ def main():
             width, heigh, quantity, np, hp, nw, path + "/0,8мм/")
         half_of_spacula.main(width, heigh, quantity, np,
                              hp, nw, path + "/0,8мм/")
-        profile_1.main(width, heigh, quantity, np, sp, path + "/0,8мм/")
-        profile_1_for_actuator.main(width, heigh, quantity, np, sp, path + "/0,8мм/")
-        profile_2.main(width, heigh, quantity, path + "/0,8мм/")
+        profile_1.main(width, heigh, quantity, path + "/0,8мм/")
+        profile_1_for_actuator.main(width, heigh, quantity, nh, path + "/0,8мм/")
+        profile_2.main(width,  heigh, quantity, path + "/0,8мм/")
         sidewall_of_spacula_hor.main(
             width, heigh, quantity, nw, np, path + "/0,8мм/")
         sidewall_of_spacula.main(
             width, heigh, quantity, np, hp, path + "/0,8мм/")
-        sidewall.main(width, heigh, quantity, np, sp, path + "/0,8мм/")
-        wall.main(width, heigh, quantity, path + "/0,8мм/")
-        sidewall_for_actuator.main(width, heigh, quantity, path + "/0,8мм/")
+        sidewall.main(width, heigh, quantity, np, sp, Belimo, path + "/0,8мм/")
+        wall.main(width, heigh, quantity, nh, Belimo, path + "/0,8мм/")
 
     except:
         print("Ошибка сохранения файла! Сообщите о проблеме разработчику!")

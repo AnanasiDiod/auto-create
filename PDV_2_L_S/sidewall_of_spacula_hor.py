@@ -12,14 +12,14 @@ def main(width, heigh, quantity, nw, np, path=str()):
     p.go_line(14.35, 14)
     p.go_line(26.99, 0)
     p.go_line(14.35, -14)
-    p.go_line(0, -(width - 82.4))
+    p.go_line(0, -(width - 241.4))
     p.go_line(-14.35, -14)
     p.go_line(-26.99, 0)
     p.go_line(-14.35, 14)
     p.go_init()
 
     p.set_xy(6.1, -16)
-    dw = (width - 114.4)/(nw - 1)
+    dw = (width - 273.4)/(nw - 1)
     for i in range(nw):
         p.circle(0, 0, 4.9 / 2)
         p.circle(43.48, 0, 4.9/2)
