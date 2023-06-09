@@ -1,7 +1,6 @@
 import ezdxf as dxf
 from point import *
 
-
 def main(width, heigh, quantity, np, hp, nw, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
