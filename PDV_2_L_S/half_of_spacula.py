@@ -25,7 +25,7 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     p.set_xy(25, -6.1)
     p.circle(0, 0, 4.9 / 2)
     p.circle(hp - 46, 0, 4.9 / 2)
-    p.circle(0, -width + 219.4, 4.9 / 2)
+    p.circle(0, -width + 225.4, 4.9 / 2)
     p.circle(- hp + 46, 0, 4.9 / 2)
 
     dw = (width - 273.4)/(nw - 1)
@@ -37,7 +37,7 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     doc.saveas(path+"Половина лопатки "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str((np - 1) * quantity)+'шт.dxf')
 
-    p.set_xy(hp/2 - 15, -38.2)
+    p.set_xy(hp/2 - 15, -38.8)
     p.circle(0, 0, 4.9 / 2)
     p.circle(34, 0, 4.9 / 2)
 

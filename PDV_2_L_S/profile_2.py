@@ -40,7 +40,7 @@ def profile(width, heigh, quantity, path=str(), ver=False):
     p.circle(-113.59, 0, 4.9 / 2)
 
     p.circle(-80.64, -19.6, 9 / 2)
-    p.circle(0, 521, 9 / 2)
+    p.circle(0, width + 21, 9 / 2)
     # метка
     if ver:
         p.circle(116.14, -119.8, 22 / 2)

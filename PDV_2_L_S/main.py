@@ -55,13 +55,13 @@ def main():
         else:
             print('Все папки созданы успешно')
         # количество горизонтальных отверстий в лопатках
-        nw = ceil((width - 114.4)/125) + 1
+        nw = ceil((width - 273.4)/125) + 1
         # количество вертикальных отверстий в профиле 1 и в стенке
-        nh = int((width - 42.44)/125) + 1
+        nh = ceil((width - 42.44)/125) + 1
         # количество лопаток
-        np = int(heigh / 220) + 1
+        np = int((heigh - 6.6) / 220.8) + 1
         # высота лопатки
-        hp = (heigh - 7.5 * (np + 1)) / np
+        hp = ((heigh - 6.6) - 7.5 * (np + 1)) / np
         # шаг лопаток
         sp = hp + 7.5
 
@@ -80,7 +80,7 @@ def main():
         sidewall_of_spacula.main(
             width, heigh, quantity, np, hp, path + "/0,8мм/")
         sidewall.main(width, heigh, quantity, np, sp, Belimo, path + "/0,8мм/")
-        wall.main(width, heigh, quantity, nh, Belimo, path + "/0,8мм/")
+        wall.main(width, heigh, quantity, nh, np, sp, Belimo, path + "/0,8мм/")
 
     except:
         print("Ошибка сохранения файла! Сообщите о проблеме разработчику!")

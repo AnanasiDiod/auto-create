@@ -22,15 +22,15 @@ def sidewall(width, heigh, quantity, np, sp, actuator, Belimo, path=str()):
     d = 11
     if actuator:
         d = 18
-    p.circle(43.98, ((heigh - 5) - (np - 1) * sp) / 2 - 18, d / 2)
+    p.circle(43.98, ((heigh - 8.6) - (np - 1) * sp) / 2 - 18, d / 2)
 
     for i in range(np - 1):
         p.circle(0, sp, 11 / 2)
     
     if actuator:
         if Belimo:
-            p.set_xy(0, 0)
-            p.circle(6.8, -heigh + 130.67, 6 / 2)
+            p.set_xy(43.98 + 7.5, -(heigh - 8.6) + ((heigh - 8.6) - (np - 1) * sp) / 2)
+            p.circle(-44.68, 30, 6 / 2)
             p.circle(89.36, 0, 6 / 2)
         doc.saveas(path+"Боковина под привод "+str(width)+'x'+str(heigh) +
                    ' 0,8мм ' + str(quantity)+'шт.dxf')

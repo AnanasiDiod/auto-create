@@ -40,17 +40,17 @@ def main(width, heigh, quantity, nh, path=str()):
 
     p.circle(66.15, 9.55, 4.9 / 2)
     p.circle(113.59, 0, 4.9 / 2)
-    p.circle(0, -width - 9.48, 4.9 / 2)
+    p.circle(0, -heigh - 9.48, 4.9 / 2)
     p.circle(-113.59, 0, 4.9 / 2)
 
     p.circle(195.03, -21.96, 9 / 2)
-    p.circle(0, width + 53.4, 9 / 2)
+    p.circle(0, heigh + 53.4, 9 / 2)
 
     p.circle(-234.64, -47.92, 4.9 / 2)
 
-    dh = (width - 42.44)/(nh - 1)
-    for i in range(nh):
-        p.circle(0, i * dh, 4.9 /2)
+    dh = (heigh - 42.44)/(nh - 1)
+    for i in range(nh - 1):
+        p.circle(0, -dh, 4.9 /2)
 
     doc.saveas(path+"Профиль 1 под привод"+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')

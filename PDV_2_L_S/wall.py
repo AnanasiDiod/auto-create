@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def main(width, heigh, quantity, nh, Belimo, path=str()):
+def main(width, heigh, quantity, nh, np, sp, Belimo, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -35,17 +35,19 @@ def main(width, heigh, quantity, nh, Belimo, path=str()):
     p.circle(-58.6, 0, 4.9 / 2)
 
     p.circle(262.38, 1.08, 4.9 / 2)
-    dh = (width - 42.44)/(nh - 1)
-    for i in range(nh):
-        p.circle(0, i * dh, 4.9 /2)
+    dh = (heigh - 42.44)/(nh - 1)
+    for i in range(nh - 1):
+        p.circle(0, -dh, 4.9 /2)
         
     p.set_xy(0, 0)
     if Belimo:
-        p.circle(62.54, -heigh + 132.59, 6 / 2)
+        p.set_xy(62.54, -heigh + ((heigh - 8.6) - (np - 1) * sp) / 2 + 40.52)
+        p.circle(0, 0, 6 / 2)
         p.circle(60, 0, 6 / 2)
         p.circle(-30, -30, 17 / 2)
     else:
-        p.circle(52.54, -heigh + 120.59, 6 / 2)
+        p.set_xy(52.54, -heigh + ((heigh - 8.6) - (np - 1) * sp) / 2 + 40.52)
+        p.circle(0, 0, 6 / 2)
         p.circle(80, 0, 6 / 2)
         p.circle(-40, -18, 17 / 2)
 
