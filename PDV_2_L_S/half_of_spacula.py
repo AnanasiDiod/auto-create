@@ -25,7 +25,7 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     p.set_xy(25, -6.1)
     p.circle(0, 0, 4.9 / 2)
     p.circle(hp - 46, 0, 4.9 / 2)
-    p.circle(0, -width + 225.4, 4.9 / 2)
+    p.circle(0, -width + 225.6, 4.9 / 2)
     p.circle(- hp + 46, 0, 4.9 / 2)
 
     dw = (width - 273.4)/(nw - 1)
