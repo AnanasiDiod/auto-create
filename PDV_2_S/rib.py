@@ -18,8 +18,8 @@ def main(width, heigh, quantity, path = str()):
     p.circle(0, -(202 + (width - 400)), 4.9/2)
     #отверстия для рычагов
     p.set_xy(50.14, -101.37)
-    p.circle(0, 0, 6.5/2)
-    p.circle(0, -(121 + (width - 400)), 6.5/2)
+    p.circle(0, 0, 5.2/2)
+    p.circle(0, -(121 + (width - 400)), 5.2/2)
     #вырезы для ушей
     p.set_xy(39.14, -87)
     p.go_line(0, -25)

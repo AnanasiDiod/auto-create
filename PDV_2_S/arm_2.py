@@ -22,7 +22,8 @@ def main(width, heigh, quantity, path = str()):
     p.go_arc(1, 10)
     p.go_init()
 
-    p.circle(-2, -11, 6.5/2)
-    p.circle(124, 0, 6.5/2)
+    p.circle(-2, -11, 5.2/2)
+    p.circle(124, 0, 5.2/2)
 
     doc.saveas(path+"Рычаг 2 "+str(width)+'x'+str(heigh)+' 2мм '+ str(quantity * 2)+'шт.dxf')
+
