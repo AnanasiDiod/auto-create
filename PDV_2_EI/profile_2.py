@@ -58,4 +58,3 @@ def main(width, heigh, quantity, path=str()):
     doc.saveas(path+"Профиль 2 "+str(width)+'x' +
                str(heigh)+' 0,8мм ' + str(quantity)+'шт.dxf')
 
-main(200,200,2)
