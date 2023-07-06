@@ -1,4 +1,4 @@
-Simport ezdxf as dxf
+import ezdxf as dxf
 from point import *
 
 
@@ -23,8 +23,8 @@ def main(width, heigh, quantity, path=str()):
     p.go_arc(1, 10)
     p.go_init()
 
-    p.circle(-2, -11, 6.5/2)
-    p.circle(114, 0, 6.5/2)
+    p.circle(-2, -11, 2.6)
+    p.circle(114, 0, 2.6)
 
     mul = 2
     if width < 500:

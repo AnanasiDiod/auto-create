@@ -21,7 +21,7 @@ def main(width, heigh, quantity, path=str()):
     p.go_arc(1, 16)
     p.go_init()
 
-    p.circle(-8, -16, 5.2/2)
+    p.circle(-8, -16, 2.6)
 
     p.set_xy(115.22, -12)
     p.go_line(31.2, 0)
