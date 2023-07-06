@@ -69,4 +69,3 @@ def profile(width, heigh, quantity, path=str(), ver=False):
 def main(width, heigh, quantity, path=str()):
     profile(width, heigh, quantity, path, False)
     profile(width, heigh, quantity, path, True)
-main(1,1,1)
