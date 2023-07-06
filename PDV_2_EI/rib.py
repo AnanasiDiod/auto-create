@@ -39,7 +39,7 @@ def main(width, heigh, quantity, path=str()):
         p.go_arc(4, 10)
         p.go_arc(3, 10)
         p.set_xy(133.14, -(145.9 + 12.48 + 1.5))
-        p.circle(0, 0, 4.9/2)
+        p.circle(0, 0, 2.6)
         # lower
         p.set_xy(123.14, -width + 268.9)
         p.go_line(0, 29.1)
@@ -51,7 +51,7 @@ def main(width, heigh, quantity, path=str()):
         p.go_arc(8, 10)
         p.go_arc(7, 10)
         p.set_xy(133.14, -width + 268.9 + 12.48 + 1.5)
-        p.circle(0, 0, 4.9/2)
+        p.circle(0, 0, 2.6)
     else:
         p.set_xy(123.14, -width/2 + 64.3)
         p.go_line(0, -29.1)
@@ -63,7 +63,7 @@ def main(width, heigh, quantity, path=str()):
         p.go_arc(4, 10)
         p.go_arc(3, 10)
         p.set_xy(133.14, -width/2 + 64.3 - 12.48 - 1.5)
-        p.circle(0, 0, 4.9/2)
+        p.circle(0, 0, 2.6)
 
     doc.saveas(path+"Ребро "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
