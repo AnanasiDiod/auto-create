@@ -60,6 +60,7 @@ QComboBox::down-arrow {
 	min-width:200px;
     height: 30px;
     font-weight: 600;
+padding-left:1px;
 }
 QLineEdit {
 min-width:150px;
@@ -75,11 +76,12 @@ font: 10pt &quot;DejaVu Sans&quot;;
 }
 
  QPushButton { 
+height:12px;
             color: #111827;
             background-color: #FFFFFF;
-            padding: 12px;
+            padding: 6px;
             border-radius: 4px;
-            border-bottom: 6px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 4px solid rgba(0, 0, 0, 0.06);
   font-family: &quot;Inter var&quot;,ui-sans-serif,system-ui,-apple-system,system-ui,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,&quot;Noto Sans&quot;,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quot;Noto Color Emoji&quot;;
   font-size: .875rem;
   font-weight: 600;
@@ -151,9 +153,9 @@ border:0px;
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>0</y>
-         <width>970</width>
-         <height>746</height>
+         <y>-67</y>
+         <width>967</width>
+         <height>804</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -232,6 +234,9 @@ padding:0px;</string>
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <item>
                  <widget class="QLabel" name="label">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
                    <string>Наименование</string>
                   </property>
@@ -268,8 +273,11 @@ padding:0px;</string>
                <layout class="QHBoxLayout" name="horizontalLayout_6">
                 <item>
                  <widget class="QLabel" name="label_5">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
-                   <string>Название клапана</string>
+                   <string>Клапан</string>
                   </property>
                  </widget>
                 </item>
@@ -294,63 +302,35 @@ padding:0px;</string>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
                   <property name="frame">
                    <bool>false</bool>
                   </property>
-                  <item>
-                   <property name="text">
-                    <string>ПДВ-1</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>ПДВ-2</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>ПДВ-2-Л</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
-                <item>
-                 <widget class="QLabel" name="label_13">
-                  <property name="text">
-                   <string>Исполнение</string>
+                  <property name="placeholderText" stdset="0">
+                   <string/>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_24">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QComboBox" name="performance">
                   <item>
                    <property name="text">
-                    <string>К</string>
+                    <string>ПДВ-1 (Пр)</string>
                    </property>
                   </item>
                   <item>
                    <property name="text">
-                    <string>С</string>
+                    <string>ПДВ-1 (Кр)</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ПДВ-2-С</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ПДВ-2-Л-К</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ПДВ-2-Л-С</string>
                    </property>
                   </item>
                  </widget>
@@ -361,6 +341,9 @@ padding:0px;</string>
                <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
                  <widget class="QLabel" name="label_6">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
                    <string>Предел огнестойкости 
 Е/EI</string>
@@ -388,11 +371,11 @@ padding:0px;</string>
                   <property name="styleSheet">
                    <string notr="true"/>
                   </property>
-                  <property name="placeholderText">
-                   <string/>
-                  </property>
                   <property name="frame">
                    <bool>false</bool>
+                  </property>
+                  <property name="placeholderText" stdset="0">
+                   <string/>
                   </property>
                   <item>
                    <property name="text">
@@ -422,6 +405,9 @@ padding:0px;</string>
                <layout class="QHBoxLayout" name="horizontalLayout_9">
                 <item>
                  <widget class="QLabel" name="label_8">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
                    <string>НО/НЗ</string>
                   </property>
@@ -460,6 +446,9 @@ padding:0px;</string>
                <layout class="QHBoxLayout" name="horizontalLayout_8">
                 <item>
                  <widget class="QLabel" name="label_7">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
                    <string>Привод </string>
                   </property>
@@ -515,41 +504,12 @@ padding:0px;</string>
                </layout>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_12">
-                <item>
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string>Сечение клапана</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_11">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="cut">
-                  <property name="styleSheet">
-                   <string notr="true">min-width: 128px;
-max-width:128px;</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
                  <widget class="QLabel" name="label_4">
+                  <property name="styleSheet">
+                   <string notr="true">padding-left:0px;</string>
+                  </property>
                   <property name="text">
                    <string>Дополнительно</string>
                   </property>
@@ -583,6 +543,16 @@ max-width:128px;</string>
                   <item>
                    <property name="text">
                     <string>МС</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ТРУ-К</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>МС-К</string>
                    </property>
                   </item>
                  </widget>
@@ -786,7 +756,7 @@ max-width:128px;</string>
                 <item>
                  <widget class="QLabel" name="label_34">
                   <property name="text">
-                   <string>Стоимость оси/осей</string>
+                   <string>Стоимость оси</string>
                   </property>
                  </widget>
                 </item>
@@ -805,6 +775,33 @@ max-width:128px;</string>
                 </item>
                 <item>
                  <widget class="QLineEdit" name="cost_axis"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_17">
+                <item>
+                 <widget class="QLabel" name="label_15">
+                  <property name="text">
+                   <string>Количество осей</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_25">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="num_axis"/>
                 </item>
                </layout>
               </item>
@@ -838,7 +835,29 @@ max-width:128px;</string>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_33">
                 <item>
-                 <widget class="QLabel" name="label_32">
+                 <widget class="QPushButton" name="calc_screw_btn">
+                  <property name="styleSheet">
+                   <string notr="true"> QPushButton { 
+            color: #111827;
+            background-color: rgba(255,255,255,1);
+            padding: 3px;
+            border-radius: 3px;
+			border-bottom: 0px solid rgba(0, 0, 0, 0.06);
+			border: 1px solid black;
+            
+	font: 10pt &quot;DejaVu Sans&quot;;
+  font-weight: 600;
+}
+QPushButton:hover {
+  background-color: rgb(249,250,251);
+}
+
+QPushButtonfocus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+</string>
+                  </property>
                   <property name="text">
                    <string>Стоимость крепежа</string>
                   </property>
@@ -858,7 +877,11 @@ max-width:128px;</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="cost_screw"/>
+                 <widget class="QLineEdit" name="cost_screw">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -1001,6 +1024,60 @@ max-width:128px;</string>
                </layout>
               </item>
               <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QLabel" name="label_11">
+                  <property name="text">
+                   <string>Стоимость греющего кабеля</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_11">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="cost_warm_cable"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <item>
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Стоимость работ по утеплению</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_24">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="cost_warm_work"/>
+                </item>
+               </layout>
+              </item>
+              <item>
                <layout class="QHBoxLayout" name="horizontalLayout_16">
                 <item>
                  <widget class="QLabel" name="label_3">
@@ -1028,29 +1105,53 @@ max-width:128px;</string>
                </layout>
               </item>
               <item>
-               <spacer name="verticalSpacer_3">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
+               <layout class="QHBoxLayout" name="horizontalLayout_18">
+                <item>
+                 <widget class="QLabel" name="label_16">
+                  <property name="text">
+                   <string>Количество</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_26">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="quantity"/>
+                </item>
+               </layout>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_5">
                 <item>
                  <widget class="QLabel" name="label_9">
+                  <property name="minimumSize">
+                   <size>
+                    <width>201</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>75</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">	font: 12pt &quot;DejaVu Sans&quot;;
     height: 30px;
-    font-weight: 600;</string>
+    font-weight: 600;
+</string>
                   </property>
                   <property name="text">
                    <string>Total:</string>
@@ -1059,6 +1160,12 @@ max-width:128px;</string>
                 </item>
                 <item>
                  <widget class="QLabel" name="total">
+                  <property name="minimumSize">
+                   <size>
+                    <width>100</width>
+                    <height>0</height>
+                   </size>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">	font: 12pt &quot;DejaVu Sans&quot;;
     font-weight: 600;</string>
@@ -1082,19 +1189,6 @@ max-width:128px;</string>
                  </spacer>
                 </item>
                </layout>
-              </item>
-              <item>
-               <spacer name="verticalSpacer_2">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
              </layout>
             </item>
@@ -1124,12 +1218,19 @@ max-width:128px;</string>
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="extract_to_kp">
+              <property name="text">
+               <string>Выгрузить КП</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="make_excel">
               <property name="styleSheet">
                <string notr="true"/>
               </property>
               <property name="text">
-               <string>Выгрузить в Excel</string>
+               <string>Выгрузить расчёт</string>
               </property>
              </widget>
             </item>
@@ -1149,7 +1250,7 @@ max-width:128px;</string>
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
