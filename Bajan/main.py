@@ -6,6 +6,7 @@ from math import ceil
 def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis, num_axis,
                        cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional,
                        ms, cost_warm_cable, cost_warm_work, quantity):
+
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
@@ -642,3 +643,7 @@ def extract_to_excel(res=list(), name=str(), path=str()):
         # print(path + '\\' + res[i]['name'] + '.xlsx')
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'
+
+
+def extract_to_kp():
+    pass
