@@ -20,7 +20,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.make_excel.clicked.connect(self.save_project)
         self.add_position_btn.clicked.connect(self.add_position)
         self.calc_screw_btn.clicked.connect(self.open_secondary_window)
-        self.extract_to_kp.clicked.connect(extract_to_kp)
+        self.extract_to_kp.clicked.connect(self.save_kp)
         self.secondary_window = None
         self.show()
 
@@ -29,6 +29,15 @@ class MainWindow(QtWidgets.QMainWindow):
         name = dialog.getSaveFileName(self, 'Save File')[0]
         path = os.path.split(name)
         extract_to_excel(res=self.positions, name=path[1], path=path[0])
+        self.add_log(f'Сохранено в файл: "{name}.xls"')
+        self.positions = []
+        self.add_log('Все позиции удалены')
+
+    def save_kp(self):
+        dialog = QFileDialog(self)
+        name = dialog.getSaveFileName(self, 'Save KP')[0]
+        path = os.path.split(name)
+        extract_to_kp(res=self.positions, name=path[1], path=path[0])
         self.add_log(f'Сохранено в файл: "{name}.xls"')
         self.positions = []
         self.add_log('Все позиции удалены')
@@ -162,7 +171,8 @@ class SecondaryWindow(QtWidgets.QWidget):
         for row in range(row_count):
             if (self.screw_table.item(row, 2)) and (self.screw_table.item(row, 1)):
                 if is_number(self.screw_table.item(row, 2).text()) and is_number(self.screw_table.item(row, 1).text()):
-                    cost = cost + float(self.screw_table.item(row, 1).text().replace(',', '.'))*float(self.screw_table.item(row, 2).text().replace(',', '.'))
+                    cost = cost + float(self.screw_table.item(row, 1).text().replace(
+                        ',', '.'))*float(self.screw_table.item(row, 2).text().replace(',', '.'))
         self.cost_screw_input.setText(str(cost))
 
 
