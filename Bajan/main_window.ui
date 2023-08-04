@@ -153,7 +153,7 @@ border:0px;
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>-67</y>
+         <y>0</y>
          <width>967</width>
          <height>804</height>
         </rect>
@@ -321,6 +321,11 @@ padding:0px;</string>
                   <item>
                    <property name="text">
                     <string>ПДВ-2-С</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>ПДВ-2-К</string>
                    </property>
                   </item>
                   <item>
@@ -1162,7 +1167,7 @@ QPushButtonfocus {
                  <widget class="QLabel" name="total">
                   <property name="minimumSize">
                    <size>
-                    <width>100</width>
+                    <width>201</width>
                     <height>0</height>
                    </size>
                   </property>

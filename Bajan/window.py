@@ -115,6 +115,7 @@ class MainWindow(QtWidgets.QMainWindow):
             try:
                 res = method(**self.get_params())
                 self.total.setText(str(float('{:.2f}'.format(res['total']))))
+                self.add_log('Расчёт произведён')
             except:
                 self.add_log('Недопустимые параметры')
 

@@ -134,7 +134,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_1_pr')
+    #print('pdv_1_pr')
 
     return res
 
@@ -237,7 +237,7 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_1_kr')
+    #print('pdv_1_kr')
 
     return res
 
@@ -373,7 +373,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_s_ei')
+    #print('pdv_2_s_ei')
 
     return res
 
@@ -498,7 +498,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_s')
+    #print('pdv_2_s')
 
     return res
 
@@ -605,7 +605,7 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_k')
+    #print('pdv_2_k')
 
     return res
 
@@ -712,7 +712,7 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_k_ei')
+    #print('pdv_2_k_ei')
 
     return res
 
@@ -831,7 +831,7 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_lk')
+    #print('pdv_2_lk')
 
     return res
 
@@ -947,7 +947,7 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    print('pdv_2_ls')
+    #print('pdv_2_ls')
 
     return res
 
