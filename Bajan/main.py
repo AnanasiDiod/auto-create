@@ -10,6 +10,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    # cost_work /= 100
     # Расчёт длины реза. Каждая строка - отдельная деталь
     len_cut = height * (4 + 4 + 4 + 4) + \
         width * (4 + 4 + 4 + 4) + \
@@ -114,7 +115,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -134,7 +135,7 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_1_pr')
+    # print('pdv_1_pr')
 
     return res
 
@@ -146,6 +147,7 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     # Расчёт длины реза. Каждая строка - отдельная деталь
     if int(height) > int(width):
         width = height
@@ -217,7 +219,7 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -237,7 +239,7 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_1_kr')
+    # print('pdv_1_kr')
 
     return res
 
@@ -249,6 +251,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     # Расчёт длины реза
     nh = ((height - 18) // 120) + 1
     nw = ((width - 93) // 120) + 1
@@ -353,7 +356,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -373,7 +376,7 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_s_ei')
+    # print('pdv_2_s_ei')
 
     return res
 
@@ -385,6 +388,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     # Расчёт длины реза
     len_cut = ((156.13 * 2 + 100.53 + 20.4 + 62.83 + 103.67) * 2 +  # Рычаг 1
                # Рычаг 2
@@ -478,7 +482,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -498,7 +502,7 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_s')
+    # print('pdv_2_s')
 
     return res
 
@@ -510,6 +514,7 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     # Расчёт длины реза
     len_cut = (210.39 + width * 2 + height * 2 +  # Лопатка
                1014.23 +  # Площадка
@@ -585,7 +590,7 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -605,7 +610,7 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_k')
+    # print('pdv_2_k')
 
     return res
 
@@ -617,6 +622,7 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     # Расчёт длины реза
     len_cut = ((210.39 + width * 2 + height * 2) * 2 +  # Лопатка
                1014.23 +  # Площадка
@@ -692,7 +698,7 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -712,7 +718,7 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_k_ei')
+    # print('pdv_2_k_ei')
 
     return res
 
@@ -724,6 +730,7 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     np = int(height / 220) + 1  # количество лопаток
     hp = (height - 7.5 * (np + 1)) / np  # высота лопатки
     # количество горизонтальных отверстий в лопатках
@@ -811,7 +818,7 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -831,7 +838,7 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_lk')
+    # print('pdv_2_lk')
 
     return res
 
@@ -843,6 +850,7 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100 + 1
+    cost_work /= 100
     np = int(height / 220.8) + 1  # количество лопаток
     hp = (height - 7.5 * (np + 1)) / np  # высота лопатки
     # количество горизонтальных отверстий в лопатках
@@ -927,7 +935,7 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
            'screw': cost_screw,
            'extra': extra_cost * (val_met + val_vata + val_cut + val_bend),
            'markup_metall': markup_box,
-           'work': cost_work*(val_met + val_vata + val_cut + val_bend),
+           'work': cost_work,
            'ms': ms,
            'warm_met': val_met_warm,
            'warm_cut': val_cut_warm,
@@ -947,7 +955,7 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
                          res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
     res['total'] *= quantity
 
-    #print('pdv_2_ls')
+    # print('pdv_2_ls')
 
     return res
 
@@ -980,8 +988,7 @@ def extract_to_excel(res=list(), name=str(), path=str()):
         ws['K' + str(2 + i * 3)] = 'Стоимость крепежа'
         ws['K' + str(3 + i * 3)] = str(res[i]['screw'])
         ws['L' + str(2 + i * 3)] = 'Дополнительные расходы на металл'
-        ws['L' + str(3 + i * 3)] = str(round((res[i]
-                                              ['extra'] - 1) * 100, 2)) + '%'
+        ws['L' + str(3 + i * 3)] = str(res[i]['extra'])
         ws['M' + str(2 + i * 3)] = 'Наценка на корпус клапана'
         ws['M' + str(3 + i * 3)
            ] = str(round((res[i]['markup_metall'] - 1) * 100, 2)) + '%'
@@ -991,7 +998,7 @@ def extract_to_excel(res=list(), name=str(), path=str()):
         ws['O' + str(3 + i * 3)] = str(res[i]['drive'])
         ws['P' + str(2 + i * 3)] = 'Наценка на привод'
         ws['P' + str(3 + i * 3)
-           ] = str(round((res[i]['markup_drive'] - 1) * 100, 2)) + '%'
+           ] = str(round((res[i]['markup_drive'] - 1) * 100, 2))
         ws['Q' + str(2 + i * 3)] = 'Стоимость утепления'
         ws['Q' + str(3 + i * 3)] = str(res[i]['warm_met'] + res[i]['warm_cut'] +
                                        res[i]['warm_bend'] + res[i]['warm_vata'] + res[i]['warm_cable'] + res[i]['warm_work'])
@@ -1002,8 +1009,10 @@ def extract_to_excel(res=list(), name=str(), path=str()):
         ws['T' + str(2 + i * 3)] = 'Итоговая стоимость'
         ws['T' + str(3 + i * 3)] = str(res[i]['total'])
         # print(path + '\\' + res[i]['name'] + '.xlsx')
-    wb.save(os.path.join(path, name + ".xlsx"))
-    return name + '.xlsx'
+    
+    fname = name.split('.')[0] + ".xlsx"
+    wb.save(os.path.join(path, fname))
+    return fname
 
 
 def extract_to_kp(res=list(), name=str(), path=str()):
