@@ -29,7 +29,7 @@ class MainWindow(QtWidgets.QMainWindow):
         name = dialog.getSaveFileName(self, 'Save File')[0]
         path = os.path.split(name)
         extract_to_excel(res=self.positions, name=path[1], path=path[0])
-        self.add_log(f'Сохранено в файл: "{name}.xls"')
+        self.add_log(f'Сохранено в файл: "{name}"')
         self.positions = []
         self.add_log('Все позиции удалены')
 
@@ -38,7 +38,7 @@ class MainWindow(QtWidgets.QMainWindow):
         name = dialog.getSaveFileName(self, 'Save KP')[0]
         path = os.path.split(name)
         extract_to_kp(res=self.positions, name=path[1], path=path[0])
-        self.add_log(f'Сохранено в файл: "{name}.xls"')
+        self.add_log(f'Сохранено в файл: "{name}"')
         self.positions = []
         self.add_log('Все позиции удалены')
 
