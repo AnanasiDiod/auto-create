@@ -10,7 +10,6 @@ def calculate_pdv_1_pr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    # cost_work /= 100
     # Расчёт длины реза. Каждая строка - отдельная деталь
     len_cut = height * (4 + 4 + 4 + 4) + \
         width * (4 + 4 + 4 + 4) + \
@@ -147,7 +146,6 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     # Расчёт длины реза. Каждая строка - отдельная деталь
     if int(height) > int(width):
         width = height
@@ -251,7 +249,6 @@ def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     # Расчёт длины реза
     nh = ((height - 18) // 120) + 1
     nw = ((width - 93) // 120) + 1
@@ -388,7 +385,6 @@ def calculate_pdv_2_s(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     # Расчёт длины реза
     len_cut = ((156.13 * 2 + 100.53 + 20.4 + 62.83 + 103.67) * 2 +  # Рычаг 1
                # Рычаг 2
@@ -514,7 +510,6 @@ def calculate_pdv_2_k(width, height, cost_met, cost_cut, cost_bend, cost_vata, c
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     # Расчёт длины реза
     len_cut = (210.39 + width * 2 + height * 2 +  # Лопатка
                1014.23 +  # Площадка
@@ -622,7 +617,6 @@ def calculate_pdv_2_k_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     # Расчёт длины реза
     len_cut = ((210.39 + width * 2 + height * 2) * 2 +  # Лопатка
                1014.23 +  # Площадка
@@ -730,7 +724,6 @@ def calculate_pdv_2_lk(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     np = int(height / 220) + 1  # количество лопаток
     hp = (height - 7.5 * (np + 1)) / np  # высота лопатки
     # количество горизонтальных отверстий в лопатках
@@ -850,7 +843,6 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     markup_box = markup_box / 100 + 1
     markup_drive = markup_drive / 100 + 1
     extra_cost = extra_cost / 100
-    cost_work /= 100
     np = int(height / 220.8) + 1  # количество лопаток
     hp = (height - 7.5 * (np + 1)) / np  # высота лопатки
     # количество горизонтальных отверстий в лопатках
