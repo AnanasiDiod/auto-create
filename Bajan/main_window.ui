@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>768</height>
+    <height>772</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -57,14 +57,14 @@ QComboBox::down-arrow {
 
  QLabel{
 	font: 10pt &quot;DejaVu Sans&quot;;
-	min-width:200px;
+	min-width:225px;
     height: 30px;
     font-weight: 600;
 padding-left:1px;
 }
 QLineEdit {
-min-width:150px;
-max-width:250px;
+min-width:125px;
+max-width:125px;
 font: 10pt &quot;DejaVu Sans&quot;;
     color: #111827;
     background-color: #FFFFFF;   
@@ -155,7 +155,7 @@ border:0px;
          <x>0</x>
          <y>0</y>
          <width>967</width>
-         <height>804</height>
+         <height>810</height>
         </rect>
        </property>
        <property name="sizePolicy">
@@ -207,7 +207,7 @@ border:0px;
                   </property>
                   <property name="minimumSize">
                    <size>
-                    <width>200</width>
+                    <width>225</width>
                     <height>50</height>
                    </size>
                   </property>
@@ -235,7 +235,8 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="styleSheet">
-                   <string notr="true">padding-left:0px;</string>
+                   <string notr="true">padding-left:0px;
+min-width: 100px;</string>
                   </property>
                   <property name="text">
                    <string>Наименование</string>
@@ -258,7 +259,7 @@ padding:0px;</string>
                 <item>
                  <widget class="QComboBox" name="name_1">
                   <property name="styleSheet">
-                   <string notr="true">width: 240px;</string>
+                   <string notr="true">width: 260px;</string>
                   </property>
                   <item>
                    <property name="text">
@@ -560,6 +561,11 @@ padding:0px;</string>
                     <string>МС-К</string>
                    </property>
                   </item>
+                  <item>
+                   <property name="text">
+                    <string>К</string>
+                   </property>
+                  </item>
                  </widget>
                 </item>
                </layout>
@@ -598,6 +604,9 @@ padding:0px;</string>
                   <property name="text">
                    <string>Сторона А (мм)</string>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -625,6 +634,9 @@ padding:0px;</string>
                   <property name="text">
                    <string>Сторона B (мм)</string>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -650,7 +662,7 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_14">
                   <property name="text">
-                   <string>Стоимость металла, м.кв.</string>
+                   <string>Стоимость металла (руб/м²)</string>
                   </property>
                   <property name="wordWrap">
                    <bool>true</bool>
@@ -680,7 +692,10 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_21">
                   <property name="text">
-                   <string>Стоимость реза, м.п.</string>
+                   <string>Стоимость реза (руб/м.п.)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -707,7 +722,10 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_20">
                   <property name="text">
-                   <string>Стоимость гиба, м.п.</string>
+                   <string>Стоимость гиба (руб/м.п.)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -734,7 +752,10 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_23">
                   <property name="text">
-                   <string>Стоимость ваты</string>
+                   <string>Стоимость ваты (руб/м²)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -761,7 +782,10 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_34">
                   <property name="text">
-                   <string>Стоимость оси</string>
+                   <string>Стоимость оси (руб/м.п.)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -790,6 +814,9 @@ padding:0px;</string>
                   <property name="text">
                    <string>Количество осей</string>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -815,7 +842,10 @@ padding:0px;</string>
                 <item>
                  <widget class="QLabel" name="label_33">
                   <property name="text">
-                   <string>Стоимость ленты</string>
+                   <string>Стоимость ленты (руб/м.п.)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -849,6 +879,7 @@ padding:0px;</string>
             border-radius: 3px;
 			border-bottom: 0px solid rgba(0, 0, 0, 0.06);
 			border: 1px solid black;
+			height: 18px;
             
 	font: 10pt &quot;DejaVu Sans&quot;;
   font-weight: 600;
@@ -864,7 +895,7 @@ QPushButtonfocus {
 </string>
                   </property>
                   <property name="text">
-                   <string>Стоимость крепежа</string>
+                   <string>Стоимость крепежа (руб)</string>
                   </property>
                  </widget>
                 </item>
@@ -895,7 +926,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_35">
                   <property name="text">
-                   <string>Доп. Расходы</string>
+                   <string>Доп. Расходы (%)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -922,7 +956,7 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_52">
                   <property name="text">
-                   <string>Наценка на корпус клапана</string>
+                   <string>Наценка на корпус клапана (%)</string>
                   </property>
                   <property name="wordWrap">
                    <bool>true</bool>
@@ -952,7 +986,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_54">
                   <property name="text">
-                   <string>Стоимость работ</string>
+                   <string>Стоимость работ (руб)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -979,7 +1016,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_53">
                   <property name="text">
-                   <string>Стоимость привода</string>
+                   <string>Стоимость привода (руб)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1006,7 +1046,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_57">
                   <property name="text">
-                   <string>Наценка на привод</string>
+                   <string>Наценка на привод (%)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1033,7 +1076,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_11">
                   <property name="text">
-                   <string>Стоимость греющего кабеля</string>
+                   <string>Стоимость греющего кабеля (руб)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1044,7 +1090,7 @@ QPushButtonfocus {
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>40</width>
+                    <width>0</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -1060,7 +1106,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_13">
                   <property name="text">
-                   <string>Стоимость работ по утеплению</string>
+                   <string>Стоимость работ по утеплению (руб)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1071,7 +1120,7 @@ QPushButtonfocus {
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>40</width>
+                    <width>0</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -1087,7 +1136,10 @@ QPushButtonfocus {
                 <item>
                  <widget class="QLabel" name="label_3">
                   <property name="text">
-                   <string>Дополнительно</string>
+                   <string>Дополнительно (руб)</string>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1116,6 +1168,9 @@ QPushButtonfocus {
                   <property name="text">
                    <string>Количество</string>
                   </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
                  </widget>
                 </item>
                 <item>
@@ -1142,7 +1197,7 @@ QPushButtonfocus {
                  <widget class="QLabel" name="label_9">
                   <property name="minimumSize">
                    <size>
-                    <width>201</width>
+                    <width>226</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -1167,7 +1222,7 @@ QPushButtonfocus {
                  <widget class="QLabel" name="total">
                   <property name="minimumSize">
                    <size>
-                    <width>201</width>
+                    <width>226</width>
                     <height>0</height>
                    </size>
                   </property>
