@@ -35,7 +35,8 @@ QComboBox::drop-down {
 	border: 0px;
 }
 QComboBox::down-arrow {
-	image: url(&quot;/home/nikita/PycharmProjects/tc/drop-down-arrow.png&quot;); 
+	image: url(:/pics/drop-down-arrow.png);
+
 	width:15px;
 	height:15px;
 	margin-right: 5px;
@@ -218,7 +219,7 @@ border:0px;
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">image: url(&quot;/home/nikita/PycharmProjects/auto-create/Bajan/logo.png&quot;);
+                   <string notr="true">image:url(&quot;:/pics/logo.png&quot;);
 height: 75px;
 margin-bottom:10px;
 padding:0px;</string>
@@ -1315,6 +1316,8 @@ QPushButtonfocus {
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="pics.qrc"/>
+ </resources>
  <connections/>
 </ui>

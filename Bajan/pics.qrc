@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/pics">
+    <file>drop-down-arrow.png</file>
+    <file>logo.png</file>
+  </qresource>
+</RCC>
