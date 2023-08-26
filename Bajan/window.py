@@ -6,6 +6,8 @@ import os
 from datetime import datetime
 import pics
 
+#pyrcc5 -o pics.py pics.qrc
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
