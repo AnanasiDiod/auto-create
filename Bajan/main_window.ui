@@ -882,7 +882,7 @@ min-width: 100px;</string>
 			border: 1px solid black;
 			height: 18px;
             
-	font: 10pt &quot;DejaVu Sans&quot;;
+	font: 13px &quot;DejaVu Sans&quot;;
   font-weight: 600;
 }
 QPushButton:hover {
