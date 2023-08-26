@@ -1209,7 +1209,7 @@ QPushButtonfocus {
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">	font: 12pt &quot;DejaVu Sans&quot;;
+                   <string notr="true">	font: 16px &quot;DejaVu Sans&quot;;
     height: 30px;
     font-weight: 600;
 </string>
@@ -1228,7 +1228,7 @@ QPushButtonfocus {
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">	font: 12pt &quot;DejaVu Sans&quot;;
+                   <string notr="true">	font: 16px &quot;DejaVu Sans&quot;;
     font-weight: 600;</string>
                   </property>
                   <property name="text">
