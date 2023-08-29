@@ -28,11 +28,13 @@ def sidewall(width, heigh, quantity, np, sp, actuator, Belimo, path=str()):
         p.circle(0, sp, 11 / 2)
     
     if actuator:
+        drive = 'Китай '
         if Belimo:
             p.set_xy(43.98 + 7.5, -(heigh - 8.6) + ((heigh - 8.6) - (np - 1) * sp) / 2)
             p.circle(-44.68, 30, 6 / 2)
             p.circle(89.36, 0, 6 / 2)
-        doc.saveas(path+"Боковина под привод "+str(width)+'x'+str(heigh) +
+            drive = 'Belimo '
+        doc.saveas(path+"Боковина под привод " + drive +str(width)+'x'+str(heigh) +
                    ' 0,8мм ' + str(quantity)+'шт.dxf')
     else:
         doc.saveas(path+"Боковина "+str(width)+'x'+str(heigh) +

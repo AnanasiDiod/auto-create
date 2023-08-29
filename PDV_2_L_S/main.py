@@ -25,11 +25,14 @@ def main():
     width = int(input('Ширина клапана в мм: '))
     heigh = int(input('Высота клапана в мм: '))
     quantity = int(input('Количество в резке(шт): '))
-    Bel = input('Если привод Китай, жмите Enter, если Белимо, введите любые символы: ')
+    Bel = input(
+        'Если привод Китай, жмите Enter, если Белимо, введите любые символы: ')
     Belimo = False
+    drive = 'привод Китай '
     if Bel != '':
         Belimo = True
-    path = g_path + "/Клапан противопожарный ПДВ-2 стеновой лифтовый " + str(
+        drive = 'привод Belimo '
+    path = g_path + "/Клапан противопожарный ПДВ-2 стеновой лифтовый " + drive + str(
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
     try:
         try:
@@ -57,7 +60,7 @@ def main():
         # количество горизонтальных отверстий в лопатках
         nw = ceil((width - 273.4)/125) + 1
         # количество вертикальных отверстий в профиле 1 и в стенке
-        nh = ceil((width - 42.44)/125) + 1
+        nh = ceil((heigh - 42.44)/125) + 1
         # количество лопаток
         np = int((heigh - 6.6) / 220.8) + 1
         # высота лопатки
@@ -73,7 +76,8 @@ def main():
         half_of_spacula.main(width, heigh, quantity, np,
                              hp, nw, path + "/0,8мм/")
         profile_1.main(width, heigh, quantity, path + "/0,8мм/")
-        profile_1_for_actuator.main(width, heigh, quantity, nh, path + "/0,8мм/")
+        profile_1_for_actuator.main(
+            width, heigh, quantity, nh, path + "/0,8мм/")
         profile_2.main(width,  heigh, quantity, path + "/0,8мм/")
         sidewall_of_spacula_hor.main(
             width, heigh, quantity, nw, np, path + "/0,8мм/")

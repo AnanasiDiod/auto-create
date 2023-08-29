@@ -40,18 +40,20 @@ def main(width, heigh, quantity, nh, np, sp, Belimo, path=str()):
         p.circle(0, -dh, 4.9 /2)
         
     p.set_xy(0, 0)
+    drive = 'Китай '
     if Belimo:
         p.set_xy(62.54, -heigh + ((heigh - 8.6) - (np - 1) * sp) / 2 + 40.52)
         p.circle(0, 0, 6 / 2)
         p.circle(60, 0, 6 / 2)
         p.circle(-30, -30, 17 / 2)
+        drive = 'Belimo '
     else:
-        p.set_xy(52.54, -heigh + ((heigh - 8.6) - (np - 1) * sp) / 2 + 40.52)
+        p.set_xy(52.54, -heigh + ((heigh - 8.6) - (np - 1) * sp) / 2 + 28.52)
         p.circle(0, 0, 6 / 2)
         p.circle(80, 0, 6 / 2)
         p.circle(-40, -18, 17 / 2)
 
-    doc.saveas(path+"Стенка "+str(width)+'x'+str(heigh) +
+    doc.saveas(path+"Стенка " + drive +str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 
 
