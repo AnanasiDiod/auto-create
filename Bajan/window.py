@@ -4,7 +4,9 @@ import sys
 from main import *
 import os
 from datetime import datetime
+import pics
 
+#pyrcc5 -o pics.py pics.qrc
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -179,7 +181,7 @@ class SecondaryWindow(QtWidgets.QWidget):
 
 def is_number(line: str):
     try:
-        float(line)
+        float(line.replace(',', '.'))
         return True
     except ValueError:
         return False
