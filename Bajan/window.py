@@ -53,6 +53,8 @@ class MainWindow(QtWidgets.QMainWindow):
                    'calculate_pdv_2_ls': calculate_pdv_2_ls,
                    'calculate_pdv_2_lk': calculate_pdv_2_lk,
                    'calculate_pdv_2_k_ei': calculate_pdv_2_k_ei,
+                   'calculate_pdv_1_kr_ei150': calculate_pdv_1_kr_ei150,
+                   'calculate_pdv_1_pr_ei150': calculate_pdv_1_pr_ei150,
                    }
         name_2 = self.name_2.currentText()
         limit_fire_resistance = self.limit_fire_resistance.currentText()
@@ -66,12 +68,21 @@ class MainWindow(QtWidgets.QMainWindow):
         else:
             additional_key_name = ''
         if name_2 == 'ПДВ-1 (Пр)':
-            return methods['calculate_pdv_1_pr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+            if limit_fire_resistance == 'EI150':
+                return methods['calculate_pdv_1_pr_ei150'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
+            else:
+                return methods['calculate_pdv_1_pr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-1 (Кр)':
             if height and not width:
-                return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
+                if limit_fire_resistance == 'EI150':
+                    return methods['calculate_pdv_1_kr_ei150'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
+                else:
+                    return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{height}-{actuator}{additional_key_name}'
             elif not height and width:
-                return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
+                if limit_fire_resistance == 'EI150':
+                    return methods['calculate_pdv_1_kr_ei150'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
+                else:
+                    return methods['calculate_pdv_1_kr'], f'Клапан противопожарный ПДВ-1 ({limit_fire_resistance})-{no_nz} ф{width}-{actuator}{additional_key_name}'
         elif name_2 == 'ПДВ-2-К':
             if (limit_fire_resistance == 'EI90') or (limit_fire_resistance == 'EI150'):
                 return methods['calculate_pdv_2_k_ei'], f'Клапан противопожарный ПДВ-2-К ({limit_fire_resistance})-{no_nz} {width}х{height}-{actuator}{additional_key_name}'
