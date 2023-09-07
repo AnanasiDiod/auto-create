@@ -379,6 +379,108 @@ def calculate_pdv_1_kr(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
     return res
 
 
+def calculate_pdv_1_kr_ei150(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis, num_axis,
+                       cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional,
+                       ms, cost_warm_cable, cost_warm_work, quantity):
+
+    markup_box = markup_box / 100 + 1
+    markup_drive = markup_drive / 100 + 1
+    extra_cost = extra_cost / 100
+    # Расчёт длины реза. Каждая строка - отдельная деталь
+    if int(height) > int(width):
+        width = height
+    else:
+        height = width
+    len_cut = ((3.141592 * (width - 1) + 10.3) * 2 * 2 + 400 * 2 + 192.58 +  # обечайка
+               1076.346 + 37.699 +  # крышка привода
+               # лопатка
+               (3.141592 * (width - 8) + (12 + 1.3) * 2 * int(width * 3 / 100 + 3) + 15.4 * 9 + 20.4 * 2) * 2 +
+               1263.8 +  # площадка
+               306.42 +  # поддержка оси
+               367.56 +  # поддержка оси квадрат
+               385.09 +  # поддержка оси центр
+               (width - 50 + 56.7) * 2 + 15.4 * 6 + 49.2 +  # поддержка оси центр 2
+               # ребро
+               ((20 + 3.141592 * (width - 10) / 2) * 2 + 22.07 * int(width * 3 / 100 + 3)) * 2 +
+               150.2 +  # уголок
+               507.82 * 4)
+    len_bend = (3.141592 * (width - 10) * 2 +  # ребро
+                15 +  # уголок
+                96.2 * 4 + 109.98 +  # крышка привода
+                (172 + 110 + 30 + 16.2 * 2) * 2 +  # площадка
+                20 * 4 + 200 * 2 + 15 + (width - 50) * 2)  # всё остальное
+    # Расчёт площади металла
+    area_met_korp = (3.141592 * (width - 1) + 10.3) * 400 + \
+        314.48 * 197.64 + 152.88 * 250.56 + 15 * 47.64 + 128.05 * 128.05 * 4
+    area_met_lopatka = 2 * 3.141592 * ((width/2 - 4) ** 2) + 3.141592 * (
+        width - 10) * 36.37 * 2 + 56.74 * 40 * 2 + 56.74 * 200 + 56.74 * (width - 50)
+    # длина ленты и кабеля
+    len_strip = 3.141592 * (width - 8) / 1000
+    len_warm_cable = len_strip + (0.16 + 0.08) * 2 + 1
+    val_warm_cable = len_warm_cable * cost_warm_cable
+    # площадь лопатки
+    area_lopatka = 3.141592 * ((width/2 - 4) ** 2)
+    # стоимость оси
+    len_axis = 0.14
+    # учёт работ и материалов для морозостойкости
+    val_met_warm = (176.94 * 263.94 + 111 *
+                    (259.24 + 491.64)) * cost_met / 1000000
+    val_cut_warm = (976 + 834.73 + 1544.57) * cost_cut / 1000
+    val_bend_warm = ((225.38 + 137.19) * 2 + 111 * 5) * cost_bend / 1000
+    val_vata_warm = (176.94 * 263.94 + 111 * (259.24 + 491.64)
+                     ) * cost_vata / 10000000
+    len_axsis_warm = 0.04
+    val_warm_work = 0
+    # Расчёт "голой" стоимости металла, стоимости реза и стоимости гиба
+    if ms:
+        len_axis += len_axsis_warm
+        val_warm_work = cost_warm_work
+    area_lopatka /= 1000000
+    val_bend = cost_bend * len_bend / 1000
+    val_cut = len_cut * cost_cut / 1000
+    area_met_lopatka /= 1000000
+    area_met_korp /= 1000000
+    val_met = (area_met_lopatka + area_met_korp) * cost_met
+    val_vata = area_lopatka * cost_vata
+    val_axis = len_axis * cost_axis * num_axis
+
+    res = {'width': width,
+           'height': height,
+           'quad': area_met_lopatka + area_met_korp,
+           'cost_met': cost_met,
+           'val_met': val_met,
+           'val_cut': val_cut,
+           'val_bend': val_bend,
+           'vata': val_vata,
+           'axis': val_axis,
+           'strip': cost_strip * len_strip,
+           'screw': cost_screw,
+           'extra': extra_cost * (val_met + val_vata + val_cut + val_bend + val_axis + cost_strip * len_strip + cost_screw),
+           'markup_metall': markup_box,
+           'work': cost_work,
+           'ms': ms,
+           'warm_met': val_met_warm,
+           'warm_cut': val_cut_warm,
+           'warm_bend': val_bend_warm,
+           'warm_vata': val_vata_warm,
+           'warm_cable': val_warm_cable,
+           'warm_work': val_warm_work,
+           'drive': cost_drive,
+           'markup_drive': markup_drive,
+           'add': additional,
+           'quantity': quantity}
+    res['total'] = ((res['val_met'] + res['val_cut'] + res['val_bend'] + res['axis'] + res['vata'] + res['strip'] + res['screw'] + res['extra']) * markup_box +
+                    res['work'] + res['drive'] * markup_drive + res['add'])
+    if ms:
+        res['total'] += (res['warm_met'] + res['warm_cut'] + res['warm_bend'] +
+                         res['warm_vata'] + res['warm_cable']) * markup_box + res['warm_work']
+    res['total'] *= quantity
+
+    # print('pdv_1_kr_ei150')
+
+    return res
+
+
 def calculate_pdv_2_s_ei(width, height, cost_met, cost_cut, cost_bend, cost_vata, cost_axis, num_axis,
                          cost_strip, cost_screw, extra_cost, markup_box, cost_work, cost_drive, markup_drive, additional,
                          ms, cost_warm_cable, cost_warm_work, quantity):
