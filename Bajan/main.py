@@ -419,7 +419,7 @@ def calculate_pdv_1_kr_ei150(width, height, cost_met, cost_cut, cost_bend, cost_
     len_warm_cable = len_strip + (0.16 + 0.08) * 2 + 1
     val_warm_cable = len_warm_cable * cost_warm_cable
     # площадь лопатки
-    area_lopatka = 3.141592 * ((width/2 - 4) ** 2)
+    area_lopatka = 3.141592 * ((width/2 - 4) ** 2) + 24 * (height + 2) * 3.141592
     # стоимость оси
     len_axis = 0.14
     # учёт работ и материалов для морозостойкости
