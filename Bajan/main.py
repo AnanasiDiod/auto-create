@@ -1182,52 +1182,81 @@ def calculate_pdv_2_ls(width, height, cost_met, cost_cut, cost_bend, cost_vata, 
 def extract_to_excel(res=list(), name=str(), path=str()):
     wb = xl.Workbook()
     ws = wb.active
+    space = 21
+    num = 1
+    ws.column_dimensions['A'].width = 3
+    ws.column_dimensions['B'].width = 55
+    ws.column_dimensions['C'].width = 39
+    ws.column_dimensions['D'].width = 19
+    ws['A1'] = '№'
+    ws['B1'] = "Наименование"
+    ws['C1'] = "Параметр"
+    ws['D1'] = "Стоимость"
     for i in range(len(res)):
-        ws['A' + str(1 + i * 3)] = res[i]['name']
-        ws['A' + str(2 + i * 3)] = 'Сторона А'
-        ws['A' + str(3 + i * 3)] = str(res[i]['width']).replace('.', ',')
-        ws['B' + str(2 + i * 3)] = 'Сторона B'
-        ws['B' + str(3 + i * 3)] = str(res[i]['height']).replace('.', ',')
-        ws['C' + str(2 + i * 3)] = 'Квадратура клапана'
-        ws['C' + str(3 + i * 3)] = str(res[i]['quad']).replace('.', ',')
-        ws['D' + str(2 + i * 3)] = 'Стоимость металла [м2]'
-        ws['D' + str(3 + i * 3)] = str(res[i]['cost_met']).replace('.', ',')
-        ws['E' + str(2 + i * 3)] = 'Стоимость железа за коробку клапана'
-        ws['E' + str(3 + i * 3)] = str(res[i]['val_met']).replace('.', ',')
-        ws['F' + str(2 + i * 3)] = 'Стоимость резки'
-        ws['F' + str(3 + i * 3)] = str(res[i]['val_cut']).replace('.', ',')
-        ws['G' + str(2 + i * 3)] = 'Стоимость гиба'
-        ws['G' + str(3 + i * 3)] = str(res[i]['val_bend']).replace('.', ',')
-        ws['H' + str(2 + i * 3)] = 'Стоимость ваты'
-        ws['H' + str(3 + i * 3)] = str(res[i]['vata']).replace('.', ',')
-        ws['I' + str(2 + i * 3)] = 'Стоимость оси(-ей)'
-        ws['I' + str(3 + i * 3)] = str(res[i]['axis']).replace('.', ',')
-        ws['J' + str(2 + i * 3)] = 'Стоимость ленты'
-        ws['J' + str(3 + i * 3)] = str(res[i]['strip']).replace('.', ',')
-        ws['K' + str(2 + i * 3)] = 'Стоимость крепежа'
-        ws['K' + str(3 + i * 3)] = str(res[i]['screw']).replace('.', ',')
-        ws['L' + str(2 + i * 3)] = 'Дополнительные расходы на металл'
-        ws['L' + str(3 + i * 3)] = str(res[i]['extra']).replace('.', ',')
-        ws['M' + str(2 + i * 3)] = 'Наценка на корпус клапана'
-        ws['M' + str(3 + i * 3)
-           ] = str(round((res[i]['markup_metall'] - 1) * 100, 2)) + '%'
-        ws['N' + str(2 + i * 3)] = 'Стоимость работ'
-        ws['N' + str(3 + i * 3)] = str(res[i]['work']).replace('.', ',')
-        ws['O' + str(2 + i * 3)] = 'Стоимость привода'
-        ws['O' + str(3 + i * 3)] = str(res[i]['drive']).replace('.', ',')
-        ws['P' + str(2 + i * 3)] = 'Наценка на привод'
-        ws['P' + str(3 + i * 3)
-           ] = str(round((res[i]['markup_drive'] - 1) * 100, 2)).replace('.', ',')
-        ws['Q' + str(2 + i * 3)] = 'Стоимость утепления'
-        ws['Q' + str(3 + i * 3)] = str(res[i]['warm_met'] + res[i]['warm_cut'] +
-                                       res[i]['warm_bend'] + res[i]['warm_vata'] + res[i]['warm_cable'] + res[i]['warm_work']).replace('.', ',')
-        ws['R' + str(2 + i * 3)] = 'Дополнительно'
-        ws['R' + str(3 + i * 3)] = str(res[i]['add']).replace('.', ',')
-        ws['S' + str(2 + i * 3)] = 'Количество'
-        ws['S' + str(3 + i * 3)] = str(res[i]['quantity']).replace('.', ',')
-        ws['T' + str(2 + i * 3)] = 'Итоговая стоимость'
-        ws['T' + str(3 + i * 3)] = str(res[i]['total']).replace('.', ',')
-        # print(path + '\\' + res[i]['name'] + '.xlsx')
+        ws['A' + str(2 + i * space)] = num
+        num += 1
+        ws['B' + str(2 + i * space)] = res[i]['name']
+
+        ws['C' + str(3 + i * space)] = 'Сторона А [мм]'
+        ws['D' + str(3 + i * space)] = str(round(res[i]['width'], 2)).replace('.', ',')
+
+        ws['C' + str(4 + i * space)] = 'Сторона B [мм]'
+        ws['D' + str(4 + i * space)] = str(round(res[i]['height'], 2)).replace('.', ',')
+
+        ws['C' + str(5 + i * space)] = 'Квадратура клапана [м2]'
+        ws['D' + str(5 + i * space)] = str(round(res[i]['quad'], 4)).replace('.', ',')
+
+        ws['C' + str(6 + i * space)] = 'Стоимость металла [руб / м2]'
+        ws['D' + str(6 + i * space)] = str(round(res[i]['cost_met'], 2)).replace('.', ',')
+
+        ws['C' + str(7 + i * space)] = 'Стоимость железа за коробку клапана [руб]'
+        ws['D' + str(7 + i * space)] = str(round(res[i]['val_met'], 2)).replace('.', ',')
+
+        ws['C' + str(8 + i * space)] = 'Стоимость резки [руб]'
+        ws['D' + str(8 + i * space)] = str(round(res[i]['val_cut'], 2)).replace('.', ',')
+
+        ws['C' + str(9 + i * space)] = 'Стоимость гиба [руб]'
+        ws['D' + str(9 + i * space)] = str(round(res[i]['val_bend'], 2)).replace('.', ',')
+        
+        ws['C' + str(10 + i * space)] = 'Стоимость ваты [руб]'
+        ws['D' + str(10 + i * space)] = str(round(res[i]['vata'], 2)).replace('.', ',')
+        
+        ws['C' + str(11 + i * space)] = 'Стоимость оси(-ей) [руб]'
+        ws['D' + str(11 + i * space)] = str(round(res[i]['axis'], 2)).replace('.', ',')
+
+        ws['C' + str(12 + i * space)] = 'Стоимость ленты [руб]'
+        ws['D' + str(12 + i * space)] = str(round(res[i]['strip'], 2)).replace('.', ',')
+        
+        ws['C' + str(13 + i * space)] = 'Стоимость крепежа [руб]'
+        ws['D' + str(13 + i * space)] = str(round(res[i]['screw'], 2)).replace('.', ',')
+
+        ws['C' + str(14 + i * space)] = 'Дополнительные расходы на металл [%]'
+        ws['D' + str(14 + i * space)] = str(round(res[i]['extra'], 1)).replace('.', ',')
+
+        ws['C' + str(15 + i * space)] = 'Наценка на корпус клапана [%]'
+        ws['D' + str(15 + i * space)] = str(round((res[i]['markup_metall']- 1) * 100, 1)).replace('.', ',')
+        
+        ws['C' + str(16 + i * space)] = 'Стоимость работ [руб]'
+        ws['D' + str(16 + i * space)] = str(round(res[i]['work'], 2)).replace('.', ',')
+
+        ws['C' + str(17 + i * space)] = 'Стоимость привода [руб]'
+        ws['D' + str(17 + i * space)] = str(round(res[i]['drive'], 2)).replace('.', ',')
+
+        ws['C' + str(18 + i * space)] = 'Наценка на привод [%]'
+        ws['D' + str(18 + i * space)] = str(round((res[i]['markup_drive'] - 1) * 100, 1)).replace('.', ',')
+        
+        ws['C' + str(19 + i * space)] = 'Стоимость утепления [руб]'
+        ws['D' + str(19 + i * space)] = str(round(res[i]['warm_met'] + res[i]['warm_cut'] + res[i]['warm_bend'] + res[i]['warm_vata'] + res[i]['warm_cable'] + res[i]['warm_work'], 2)).replace('.', ',')
+        
+        ws['C' + str(20 + i * space)] = 'Дополнительно [руб]'
+        ws['D' + str(20 + i * space)] = str(round(res[i]['add'], 2)).replace('.', ',')
+        
+        ws['C' + str(21 + i * space)] = 'Количество [шт]'
+        ws['D' + str(21 + i * space)] = str(round(res[i]['quantity'])).replace('.', ',')
+        
+        ws['C' + str(21 + i * space)] = 'Итоговая стоимость [руб]'
+        ws['D' + str(21 + i * space)] = str(round(res[i]['total'], 2)).replace('.', ',')
+
     
     fname = name.split('.')[0] + ".xlsx"
     wb.save(os.path.join(path, fname))
@@ -1237,9 +1266,18 @@ def extract_to_excel(res=list(), name=str(), path=str()):
 def extract_to_kp(res=list(), name=str(), path=str()):
     wb = xl.Workbook()
     ws = wb.active
+    ws.column_dimensions['A'].width = 55
+    ws.column_dimensions['B'].width = 11
+    ws.column_dimensions['C'].width = 20
+    ws.column_dimensions['D'].width = 7
+    ws['A' + str(1)] = "Наименование"
+    ws['B' + str(1)] = "Количество"
+    ws['C' + str(1)] = "Единицы измерения"
+    ws['D' + str(1)] = "Сумма"
     for i in range(len(res)):
-        ws['A' + str(1 + i)] = str(res[i]['name']) + \
-            " - " + str(int(res[i]['quantity'])) + 'шт'
-        ws['B' + str(1 + i)] = str(int(res[i]['total']))
+        ws['A' + str(2 + i)] = str(res[i]['name'])
+        ws['B' + str(2 + i)] = str(int(res[i]['quantity']))
+        ws['C' + str(2 + i)] = 'шт'
+        ws['D' + str(2 + i)] = str(int(res[i]['total']))
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'
