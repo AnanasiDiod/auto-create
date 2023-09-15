@@ -444,6 +444,11 @@ min-width: 100px;</string>
                  <widget class="QComboBox" name="no_nz">
                   <item>
                    <property name="text">
+                    <string/>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
                     <string>НО</string>
                    </property>
                   </item>
@@ -511,6 +516,16 @@ min-width: 100px;</string>
                   <item>
                    <property name="text">
                     <string>Б/П</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>BE</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>BF</string>
                    </property>
                   </item>
                  </widget>
