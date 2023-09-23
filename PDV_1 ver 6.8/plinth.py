@@ -63,12 +63,59 @@ def ms(width, heigh, quantity, path=str()):
     p = point()
     p.msp = msp
 
+    p.go_line(205.8, 0)
+    p.go_arc(8, 5)
+    p.go_arc(7, 5)
+    p.go_line(0, -15.47)
+    p.go_line(53.84, 0)
+    p.go_arc(8, 5)
+    p.go_arc(7, 5)
+    p.go_line(0, -120)
+    p.go_arc(6, 5)
+    p.go_arc(5, 5)
+    p.go_line(-53.84, 0)
+    p.go_line(0, -15.47)
+    p.go_arc(6, 5)
+    p.go_arc(5, 5)
+    p.go_line(-205.8, 0)
+    p.go_arc(4, 5)
+    p.go_arc(3, 5)
+    p.go_line(0, 15.47)
+    p.go_line(-53.84, 0)
+    p.go_arc(4, 5)
+    p.go_arc(3, 5)
+    p.go_line(0, 120)
+    p.go_arc(2, 5)
+    p.go_arc(1, 5)
+    p.go_line(53.84, 0)
+    p.go_line(0, 15.47)
+    p.go_arc(2, 5)
+    p.go_arc(1, 5)
+    p.go_init()
+
+    p.circle(-54.84, -40.47, 7 / 2)
+    p.circle(0, -90, 7 / 2)
+    p.circle(315.48, 0, 7 / 2)
+    p.circle(0, 90, 7 / 2)
+    p.set_xy(0, 0)
+
+    p.circle(2.9, -8.1, 3 / 2)
+    p.circle(100, 0, 3 / 2)
+    p.circle(100, 0, 3 / 2)
+    p.circle(0, -154.74, 3 / 2)
+    p.circle(-100, 0, 3 / 2)
+    p.circle(-100, 0, 3 / 2)
+
+    p.set_xy(0, 0)
+    p.circle(32.9, -85.47, 18 / 2)
+
     doc.saveas(path+"Площадка МС "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
 
 
-def main(width, heigh, quantity, ms, path=str()):
-    if ms:
+def main(width, heigh, quantity, ms_trigger, path=str()):
+    if ms_trigger:
         usual(width, heigh, quantity, path)
     else:
         ms(width, heigh, quantity, path)
+
