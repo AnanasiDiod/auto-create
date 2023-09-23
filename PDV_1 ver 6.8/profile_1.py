@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def main(width, heigh, quantity, path=str()):
+def main(width, heigh, quantity, ms, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -42,8 +42,16 @@ def main(width, heigh, quantity, path=str()):
     # Отверстия под боковины
     p.circle(-218.34, -6.2, 4.9/2)
     p.circle(-58.6, 0, 4.9/2)
+    if ms:
+        p.circle(-17.5, 0, 4.9 / 2)
+        p.circle(93.6, 0, 4.9 / 2)
+        p.set_xy(51.9, -47.64)
     p.circle(0, -(360 + (heigh - 400)), 4.9/2)
     p.circle(58.6, 0, 4.9/2)
+    if ms:
+        p.circle(17.5, 0, 4.9 / 2)
+        p.circle(-93.6, 0, 4.9 / 2)
+        p.set_xy(110.5, - heigh - 7.64)
     # Крепления к профилю 2 нижние
     p.circle(-75.5, -34.54, 4.9/2)
     p.circle(242.4, 0, 4.9/2)

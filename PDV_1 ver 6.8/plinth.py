@@ -2,7 +2,7 @@ import ezdxf as dxf
 from point import *
 
 
-def main(width, heigh, quantity, path=str()):
+def usual(width, heigh, quantity, path=str()):
     doc = dxf.new()
     doc.layers.add("FIGURE", color=2)
     msp = doc.modelspace()
@@ -54,3 +54,21 @@ def main(width, heigh, quantity, path=str()):
 
     doc.saveas(path+"Площадка "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
+
+
+def ms(width, heigh, quantity, path=str()):
+    doc = dxf.new()
+    doc.layers.add("FIGURE", color=2)
+    msp = doc.modelspace()
+    p = point()
+    p.msp = msp
+
+    doc.saveas(path+"Площадка МС "+str(width)+'x'+str(heigh) +
+               ' 0,8мм ' + str(quantity)+'шт.dxf')
+
+
+def main(width, heigh, quantity, ms, path=str()):
+    if ms:
+        usual(width, heigh, quantity, path)
+    else:
+        ms(width, heigh, quantity, path)

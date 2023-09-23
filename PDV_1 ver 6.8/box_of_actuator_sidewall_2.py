@@ -39,10 +39,5 @@ def main(width, heigh, quantity, path=str()):
     p.circle(-24.5, -30, 22 / 2)
     p.circle(49, 0, 22 / 2)
 
-
-
-
-
-
-    doc.saveas(path+"коробка привода_бок_2 "+str(width)+'x'+str(heigh) +
-               ' 0,8мм ' + str(quantity)+'шт.dxf')
+    doc.saveas(path + "Коробка привода_бок_2 " + str(width) + 'x' + str(heigh) +
+               ' 0,8мм ' + str(quantity) + 'шт.dxf')
