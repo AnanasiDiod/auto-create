@@ -1269,15 +1269,18 @@ def extract_to_kp(res=list(), name=str(), path=str()):
     ws.column_dimensions['A'].width = 55
     ws.column_dimensions['B'].width = 11
     ws.column_dimensions['C'].width = 20
-    ws.column_dimensions['D'].width = 7
-    ws['A' + str(1)] = "Наименование"
-    ws['B' + str(1)] = "Количество"
-    ws['C' + str(1)] = "Единицы измерения"
-    ws['D' + str(1)] = "Сумма"
+    ws.column_dimensions['D'].width = 19
+    ws.column_dimensions['E'].width = 7
+    ws['A1'] = "Наименование"
+    ws['B1'] = "Количество"
+    ws['C1'] = "Единица измерения"
+    ws['D1'] = "Стоимость единицы"
+    ws['E1'] = "Сумма"
     for i in range(len(res)):
         ws['A' + str(2 + i)] = str(res[i]['name'])
-        ws['B' + str(2 + i)] = str(int(res[i]['quantity']))
+        ws['B' + str(2 + i)] = int(res[i]['quantity'])
         ws['C' + str(2 + i)] = 'шт'
-        ws['D' + str(2 + i)] = str(int(res[i]['total']))
+        ws['D' + str(2 + i)] = int(res[i]['total']/res[i]['quantity'])
+        ws['E' + str(2 + i)] = int(res[i]['total'])
     wb.save(os.path.join(path, name + ".xlsx"))
     return name + '.xlsx'

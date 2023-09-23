@@ -6,6 +6,7 @@ from main import *
 import os
 from datetime import datetime
 import json
+import pics
 
 
 class MainWindow(QtWidgets.QMainWindow):
