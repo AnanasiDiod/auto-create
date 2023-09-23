@@ -46,5 +46,3 @@ def main(width, heigh, quantity, path=str()):
 
     doc.saveas(path+"коробка привода_бок_2 "+str(width)+'x'+str(heigh) +
                ' 0,8мм ' + str(quantity)+'шт.dxf')
-
-main(600, 400, 1)
