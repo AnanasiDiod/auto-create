@@ -116,6 +116,18 @@
   ('bisect',
    'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\bisect.py',
    'PYMODULE'),
+  ('box_of_actuator',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\box_of_actuator.py',
+   'PYMODULE'),
+  ('box_of_actuator_sidewall',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\box_of_actuator_sidewall.py',
+   'PYMODULE'),
+  ('box_of_actuator_sidewall_2',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\box_of_actuator_sidewall_2.py',
+   'PYMODULE'),
   ('bz2', 'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\bz2.py', 'PYMODULE'),
   ('calendar',
    'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\calendar.py',
@@ -1209,6 +1221,21 @@
    'PYMODULE'),
   ('uu', 'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\uu.py', 'PYMODULE'),
   ('uuid', 'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\uuid.py', 'PYMODULE'),
+  ('warm_angle',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver 6.8\\warm_angle.py',
+   'PYMODULE'),
+  ('warm_horizontal',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\warm_horizontal.py',
+   'PYMODULE'),
+  ('warm_vertical',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\warm_vertical.py',
+   'PYMODULE'),
+  ('warm_vetical_with_hole',
+   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_1 ver '
+   '6.8\\warm_vetical_with_hole.py',
+   'PYMODULE'),
   ('webbrowser',
    'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\webbrowser.py',
    'PYMODULE'),
