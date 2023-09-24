@@ -25,7 +25,7 @@ def regular(width, heigh, quantity, path=str()):
     p.circle(-56.37, 0, 4.9 / 2)
 
     doc.saveas(path + "Греющий угол " + str(width) + 'x' + str(heigh) +
-               ' 0,8мм ' + str(quantity * 4) + 'шт.dxf')
+               ' 0,8мм ' + str(quantity) + 'шт.dxf')
 
 
 def irregular_150(width, heigh, quantity, path=str()):
@@ -52,7 +52,7 @@ def irregular_150(width, heigh, quantity, path=str()):
     p.set_xy(0, 0)
     p.circle(48.57, -52.47, 22 / 2)
 
-    doc.saveas(path + "Греющий угол " + str(width) + 'x' + str(heigh) +
+    doc.saveas(path + "Греющий угол с отверстием " + str(width) + 'x' + str(heigh) +
                ' 0,8мм ' + str(quantity) + 'шт.dxf')
 
 
@@ -82,7 +82,7 @@ def irregular_200(width, heigh, quantity, path=str()):
     p.circle(0, -54.3, 4.9 / 2)
     p.circle(-56.37, 0, 4.9 / 2)
 
-    doc.saveas(path + "Греющий угол " + str(width) + 'x' + str(heigh) +
+    doc.saveas(path + "Греющий угол с отверстием " + str(width) + 'x' + str(heigh) +
                ' 0,8мм ' + str(quantity) + 'шт.dxf')
 
 

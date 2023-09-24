@@ -33,10 +33,13 @@ def main():
     heigh = int(input('Высота клапана в мм: '))
     ms_inp = input('Модификация МС (Д/Н): ')
     ms = False
-    if ms_inp == 'Д':
+    if ms_inp in ('Д', 'д'):
         ms = True
+    name = "/Противопожарный клапан ПДВ-1 (Пр) "
+    if ms:
+        name += "МС "
     quantity = int(input('Количество в резке(шт): '))
-    path = g_path + "/Противопожарный клапан ПДВ-1 (Пр) " + str(
+    path = g_path + name + str(
         width) + "x" + str(heigh) + "(Н) - " + str(quantity) + ' шт/'
 
     ei150 = False
@@ -72,7 +75,7 @@ def main():
             sidewall.main(width, heigh, quantity, path + "0,8мм/")
             partition_wall.main(width, heigh, quantity,
                                 nh, nw, path + "0,8мм/")
-            plinth.main(width, heigh, quantity, path + "0,8мм/")
+            plinth.main(width, heigh, quantity, ms, path + "0,8мм/")
             partition_sidewall.main(
                 width, heigh, quantity, nh, path + "0,8мм/")
             partition_sidewall_h.main(
