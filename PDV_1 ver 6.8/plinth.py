@@ -114,7 +114,7 @@ def ms(width, heigh, quantity, path=str()):
 
 
 def main(width, heigh, quantity, ms_trigger, path=str()):
-    if not ms_trigger:
+    if ms_trigger:
         ms(width, heigh, quantity, path)
     else:
         usual(width, heigh, quantity, path)
