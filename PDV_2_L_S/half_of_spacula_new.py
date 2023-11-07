@@ -17,7 +17,7 @@ def spacula_new(width, heigh, quantity, np, hp, nw, drive, path=str()):
     p.go_line(0, -24.01)
     p.go_line(24.01, 0)
     p.go_line(21.44, -20.03)
-    p.go_line(0, -width + 88.6)
+    p.go_line(0, -width + 247.6)
     p.go_line(-21.44, -20.03)
     p.go_line(-24.01, 0)
     p.go_line(0, -24.01)
@@ -28,17 +28,17 @@ def spacula_new(width, heigh, quantity, np, hp, nw, drive, path=str()):
     p.go_line(-5, 0)
     p.go_arc(4, 2)
     p.go_arc(3, 2)
-    p.go_line(0, width - 58.4)
+    p.go_line(0, width - 217.4)
     p.go_arc(2, 2)
     p.go_arc(1, 2)
     p.go_init()
 
     p.circle(25, 40.28, 4.9 / 2)
     p.circle(hp - 44.84, 0, 4.9 / 2)
-    p.circle(0, -width - 26.15, 4.9 / 2)
+    p.circle(0, -width + 132.85, 4.9 / 2)
     p.circle(- hp + 44.84, 0, 4.9 / 2)
 
-    dw = (width - 114.4)/(nw - 1)
+    dw = (width - 273.4)/(nw - 1)
     for i in range(nw):
         p.set_xy(16.05, -(30 + i * dw))
         p.circle(0, 0, 4.9 / 2)
@@ -47,7 +47,7 @@ def spacula_new(width, heigh, quantity, np, hp, nw, drive, path=str()):
     if not drive:
         p.set_xy(hp/2 + 2.565, 16.09)
         p.circle(0, 0, 5.75)
-        p.circle(0, -width + 22.22, 5.75)
+        p.circle(0, -width + 181.22, 5.75)
         doc.saveas(path+"Половина лопатки "+str(width)+'x'+str(heigh) +
                 ' 0,8мм ' + str((np - 1) * quantity)+'шт.dxf')
     else:
@@ -55,7 +55,7 @@ def spacula_new(width, heigh, quantity, np, hp, nw, drive, path=str()):
         p.circle(0, 0, 4.9 / 2)
         p.circle(34, 0, 4.9 / 2)
         p.set_xy(hp/2 + 2.565, 16.09)
-        p.circle(0, -width + 22.22, 5.75)
+        p.circle(0, -width + 181.22, 5.75)
         p.set_xy(hp/2 - 3.585, 9.94)
         p.go_line(0, 12.3)
         p.go_line(12.3, 0)
