@@ -10,7 +10,6 @@ import profile_1
 import profile_2
 import sidewall
 import washer
-from math import floor
 
 message_1 = 'Скопируйте сюда путь к папке, в которой необходимо сделать чертежи: '
 g_path = ''
@@ -50,7 +49,7 @@ def main():
         else:
             print('Все папки созданы успешно')
         # количество горизонтальных отверстий в лопатках
-        nw = floor((width - 114.4)/125) + 1
+        nw = round((width - 114.4)/125) + 1
         # количество лопаток
         np = int(heigh / 220) + 1
         # высота лопатки

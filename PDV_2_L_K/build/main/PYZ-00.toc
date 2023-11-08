@@ -906,12 +906,13 @@
    'PYMODULE'),
   ('glob', 'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\glob.py', 'PYMODULE'),
   ('gzip', 'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\gzip.py', 'PYMODULE'),
-  ('half_of_spacula',
-   'D:\\Рабочий стол\\git projects\\auto-create\\PDV_2_L_K\\half_of_spacula.py',
-   'PYMODULE'),
-  ('half_of_spacula_with_fold',
+  ('half_of_spacula_new',
    'D:\\Рабочий стол\\git '
-   'projects\\auto-create\\PDV_2_L_K\\half_of_spacula_with_fold.py',
+   'projects\\auto-create\\PDV_2_L_K\\half_of_spacula_new.py',
+   'PYMODULE'),
+  ('half_of_spacula_with_fold_new',
+   'D:\\Рабочий стол\\git '
+   'projects\\auto-create\\PDV_2_L_K\\half_of_spacula_with_fold_new.py',
    'PYMODULE'),
   ('hashlib',
    'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\hashlib.py',
@@ -1155,14 +1156,6 @@
    'PYMODULE'),
   ('sidewall',
    'D:\\Рабочий стол\\git projects\\auto-create\\PDV_2_L_K\\sidewall.py',
-   'PYMODULE'),
-  ('sidewall_of_spacula',
-   'D:\\Рабочий стол\\git '
-   'projects\\auto-create\\PDV_2_L_K\\sidewall_of_spacula.py',
-   'PYMODULE'),
-  ('sidewall_of_spacula_hor',
-   'D:\\Рабочий стол\\git '
-   'projects\\auto-create\\PDV_2_L_K\\sidewall_of_spacula_hor.py',
    'PYMODULE'),
   ('signal',
    'C:\\Users\\mi\\anaconda3\\envs\\.jiner\\lib\\signal.py',

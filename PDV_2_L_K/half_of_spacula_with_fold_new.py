@@ -39,11 +39,11 @@ def main(width, heigh, quantity, np, hp, nw, path=str()):
     p.circle(13.736, 33.7, 5.2 / 2)
     p.circle(0, - width - 13.01, 5.2 / 2)
 
-    p.set_xy(27.8, -8.1)
+    p.set_xy(24.9, -8.1)
     p.circle(0, 0, 4.9 / 2)
-    p.circle(hp - 47.8, 0, 4.9 / 2)
+    p.circle(hp - 44.9, 0, 4.9 / 2)
     p.circle(0, -width + 70.6, 4.9 / 2)
-    p.circle(- hp + 47.8, 0, 4.9 / 2)
+    p.circle(- hp + 44.9, 0, 4.9 / 2)
 
     dw = (width - 114.4)/(nw - 1)
     for i in range(nw):
